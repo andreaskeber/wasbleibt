@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berechnungen - WasBleibt.at</title>
+    <meta name="description"
+        content="Detaillierte Erklärung der Berechnungsmethoden für Steuern, Sozialversicherung und Sozialleistungen.">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>WasBleibt</h1>
+                </a>
+            </div>
+            <p class="tagline">Berechnungsmethoden & Formeln</p>
+        </header>
+
+        <!-- Back Link -->
+        <nav class="page-nav">
+            <a href="index.html" class="back-link">← Zurück zum Rechner</a>
+        </nav>
+
+        <main class="main-content">
+            <!-- Lohnsteuer Section -->
+            <section class="info-section glass-card">
+                <h2>Lohnsteuer 2025</h2>
+                <p class="section-intro">
+                    Die Lohnsteuer wird <strong>nicht</strong> auf das Bruttoeinkommen berechnet, sondern auf die
+                    <strong>Bemessungsgrundlage</strong> = Brutto minus Sozialversicherungsbeiträge.
+                </p>
+
+                <div class="info-note">
+                    <strong>Berechnungsreihenfolge:</strong><br>
+                    1. Brutto → 2. SV abziehen → 3. <strong>Bemessungsgrundlage</strong> → 4. Lohnsteuer berechnen
+                </div>
+
+                <h3>Steuerstufen (Jahres-Bemessungsgrundlage)</h3>
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Von</th>
+                            <th>Bis</th>
+                            <th>Steuersatz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>€0</td>
+                            <td>€13.308</td>
+                            <td class="highlight-green">0%</td>
+                        </tr>
+                        <tr>
+                            <td>€13.308</td>
+                            <td>€21.617</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>€21.617</td>
+                            <td>€35.836</td>
+                            <td>30%</td>
+                        </tr>
+                        <tr>
+                            <td>€35.836</td>
+                            <td>€69.166</td>
+                            <td>40%</td>
+                        </tr>
+                        <tr>
+                            <td>€69.166</td>
+                            <td>€103.072</td>
+                            <td>48%</td>
+                        </tr>
+                        <tr>
+                            <td>€103.072</td>
+                            <td>€1.000.000</td>
+                            <td>50%</td>
+                        </tr>
+                        <tr>
+                            <td>€1.000.000</td>
+                            <td>∞</td>
+                            <td class="highlight-red">55%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="formula-box">
+                    <h4>Beispiel: €2.500 Monatsbrutto (€35.000 Jahresbrutto)</h4>
+                    <code>
+                        <strong>Schritt 1: Sozialversicherung</strong><br>
+                        €35.000 × 18,07% = €6.324,50 SV/Jahr<br><br>
+                        <strong>Schritt 2: Bemessungsgrundlage</strong><br>
+                        €35.000 - €6.324,50 = €28.675,50<br><br>
+                        <strong>Schritt 3: Lohnsteuer auf Bemessungsgrundlage</strong><br>
+                        Stufe 1: €13.308 × 0% = €0<br>
+                        Stufe 2: (€21.617 - €13.308) × 20% = €1.661,80<br>
+                        Stufe 3: (€28.675,50 - €21.617) × 30% = €2.117,55<br>
+                        <strong>Lohnsteuer: €3.779,35/Jahr ≈ €315/Monat</strong>
+                    </code>
+                </div>
+            </section>
+
+            <!-- Sozialversicherung Section -->
+            <section class="info-section glass-card">
+                <h2>Sozialversicherung 2025</h2>
+                <p class="section-intro">
+                    Arbeitnehmer zahlen 18,07% des Bruttogehalts an Sozialversicherungsbeiträgen (bis zur
+                    Höchstbeitragsgrundlage).
+                </p>
+
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Beitrag</th>
+                            <th>Satz</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Krankenversicherung</td>
+                            <td>3,87%</td>
+                        </tr>
+                        <tr>
+                            <td>Pensionsversicherung</td>
+                            <td>10,25%</td>
+                        </tr>
+                        <tr>
+                            <td>Arbeitslosenversicherung</td>
+                            <td>3,00%</td>
+                        </tr>
+                        <tr>
+                            <td>Arbeiterkammerumlage</td>
+                            <td>0,50%</td>
+                        </tr>
+                        <tr>
+                            <td>Wohnbauförderung</td>
+                            <td>0,50%</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Gesamt</strong></td>
+                            <td><strong>18,07%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Höchstbeitragsgrundlage 2025:</strong> €6.060/Monat<br>
+                    Einkommen über dieser Grenze zahlt keine zusätzlichen SV-Beiträge.
+                </div>
+            </section>
+
+            <!-- Familienbeihilfe Section -->
+            <section class="info-section glass-card">
+                <h2>Familienbeihilfe 2025</h2>
+                <p class="section-intro">
+                    Monatliche Beihilfe pro Kind, gestaffelt nach Alter. Dazu kommt der Kinderabsetzbetrag von
+                    €70,90/Kind.
+                </p>
+
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Alter des Kindes</th>
+                            <th>Monatlich</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0-2 Jahre</td>
+                            <td>€138,40</td>
+                        </tr>
+                        <tr>
+                            <td>3-9 Jahre</td>
+                            <td>€148,00</td>
+                        </tr>
+                        <tr>
+                            <td>10-18 Jahre</td>
+                            <td>€171,80</td>
+                        </tr>
+                        <tr>
+                            <td>19-24 Jahre (in Ausbildung)</td>
+                            <td>€200,40</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Geschwisterstaffelung</h3>
+                <p>Bei mehreren Kindern gibt es einen Zuschlag:</p>
+                <ul class="benefit-list">
+                    <li>2 Kinder: +€8,60/Kind</li>
+                    <li>3 Kinder: +€21,10/Kind</li>
+                    <li>4 Kinder: +€32,10/Kind</li>
+                    <li>5 Kinder: +€38,90/Kind</li>
+                    <li>6 Kinder: +€43,40/Kind</li>
+                    <li>7+ Kinder: +€63,10/Kind</li>
+                </ul>
+            </section>
+
+            <!-- Familienbonus Plus Section -->
+            <section class="info-section glass-card">
+                <h2>Familienbonus Plus 2025</h2>
+                <p class="section-intro">
+                    Steuerkredit, der direkt die Lohnsteuer reduziert.
+                </p>
+
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Alter des Kindes</th>
+                            <th>Jährlich</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0-17 Jahre</td>
+                            <td class="highlight-green">€2.000,16</td>
+                        </tr>
+                        <tr>
+                            <td>18-24 Jahre (in Ausbildung)</td>
+                            <td>€650,16</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Wichtig:</strong> Der Familienbonus kann nur bis zur Höhe der tatsächlichen Steuerlast
+                    genutzt werden. Bei geringem Einkommen greift stattdessen der <strong>Kindermehrbetrag</strong> (bis
+                    €700/Jahr pro Kind).
+                </div>
+            </section>
+
+            <!-- Wohnbeihilfe Section -->
+            <section class="info-section glass-card">
+                <h2>Wohnbeihilfe</h2>
+                <p class="section-intro">
+                    Die Wohnbeihilfe ist Ländersache und variiert stark. Wir berechnen aktuell Wien und Steiermark.
+                </p>
+
+                <h3>Wien</h3>
+                <p>Einkommensgrenzen (Netto/Monat):</p>
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Haushaltsgröße</th>
+                            <th>Einkommensgrenze</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1 Person</td>
+                            <td>€1.600</td>
+                        </tr>
+                        <tr>
+                            <td>2 Personen</td>
+                            <td>€2.285</td>
+                        </tr>
+                        <tr>
+                            <td>3 Personen</td>
+                            <td>€2.630</td>
+                        </tr>
+                        <tr>
+                            <td>4 Personen</td>
+                            <td>€3.030</td>
+                        </tr>
+                        <tr>
+                            <td>5 Personen</td>
+                            <td>€3.430</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Steiermark (Wohnunterstützung)</h3>
+                <p>Sozialstaffel nach Einkommen, maximale Förderung bei Haushaltsgröße:</p>
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Haushaltsgröße</th>
+                            <th>Max. Mietbeihilfe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1 Person</td>
+                            <td>€250</td>
+                        </tr>
+                        <tr>
+                            <td>2 Personen</td>
+                            <td>€350</td>
+                        </tr>
+                        <tr>
+                            <td>3 Personen</td>
+                            <td>€450</td>
+                        </tr>
+                        <tr>
+                            <td>4 Personen</td>
+                            <td>€500</td>
+                        </tr>
+                        <tr>
+                            <td>5+ Personen</td>
+                            <td>€550</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Kinderbetreuung Section -->
+            <section class="info-section glass-card">
+                <h2>Kinderbetreuungskosten</h2>
+                <p class="section-intro">
+                    Die Kosten für Kindergarten/Krippe variieren massiv zwischen den Bundesländern!
+                </p>
+
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Bundesland</th>
+                            <th>Ganztag</th>
+                            <th>Essen</th>
+                            <th>Gesamt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight-row">
+                            <td>Wien</td>
+                            <td class="highlight-green">€0</td>
+                            <td>€72</td>
+                            <td class="highlight-green">€72</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Burgenland</td>
+                            <td class="highlight-green">€0</td>
+                            <td>€70</td>
+                            <td class="highlight-green">€70</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Kärnten</td>
+                            <td class="highlight-green">€0</td>
+                            <td>€75</td>
+                            <td class="highlight-green">€75</td>
+                        </tr>
+                        <tr>
+                            <td>Tirol</td>
+                            <td>€36</td>
+                            <td>€88</td>
+                            <td>€124</td>
+                        </tr>
+                        <tr>
+                            <td>Vorarlberg</td>
+                            <td>€46</td>
+                            <td>€140</td>
+                            <td>€186</td>
+                        </tr>
+                        <tr>
+                            <td>Salzburg</td>
+                            <td>€64</td>
+                            <td>€80</td>
+                            <td>€144</td>
+                        </tr>
+                        <tr>
+                            <td>Oberösterreich</td>
+                            <td>€73</td>
+                            <td>€70</td>
+                            <td>€143</td>
+                        </tr>
+                        <tr>
+                            <td>Niederösterreich</td>
+                            <td>€75</td>
+                            <td>€64</td>
+                            <td>€139</td>
+                        </tr>
+                        <tr class="highlight-row-negative">
+                            <td>Steiermark</td>
+                            <td class="highlight-red">€286</td>
+                            <td>€110</td>
+                            <td class="highlight-red">€396</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note warning">
+                    <strong>Maximaler Unterschied:</strong> 2 Kinder in Ganztags-Kindergarten kosten in Steiermark
+                    <strong>€648 mehr pro Monat</strong> als in Wien!
+                </div>
+            </section>
+
+            <!-- Disclaimer -->
+            <section class="info-section glass-card">
+                <h2>Haftungsausschluss</h2>
+                <p>
+                    Diese Berechnungen dienen nur zur Orientierung und ersetzen keine professionelle Steuerberatung.
+                    Die tatsächlichen Werte können je nach individueller Situation abweichen.
+                    Alle Angaben basieren auf den zum Zeitpunkt der Entwicklung aktuellen Daten (2025).
+                </p>
+                <p>
+                    <strong>Quellen:</strong> BMF, Arbeiterkammer, Land Wien, Land Steiermark, diverse
+                    Landesregierungen.
+                </p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                <a href="index.html">← Zurück zum Rechner</a>
+            </p>
+            <p class="footer-disclaimer">
+                WasBleibt.at © 2026 | Keine Gewähr für Richtigkeit.
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

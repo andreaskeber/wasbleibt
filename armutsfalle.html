@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Die Armutsfalle - WasBleibt.at</title>
+    <meta name="description"
+        content="Warum es sich bei niedrigem Einkommen zunächst nicht lohnt, mehr zu arbeiten. Die österreichische Armutsfalle erklärt.">
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <h1>WasBleibt</h1>
+                </a>
+            </div>
+            <p class="tagline">Die österreichische Armutsfalle erklärt</p>
+        </header>
+
+        <!-- Back Link -->
+        <nav class="page-nav">
+            <a href="index.html" class="back-link">← Zurück zum Rechner</a>
+        </nav>
+
+        <main class="main-content">
+            <!-- What is the poverty trap? -->
+            <section class="info-section glass-card">
+                <h2>Was ist die Armutsfalle?</h2>
+                <p class="section-intro">
+                    Die <strong>Armutsfalle</strong> (auch "Transferentzugsrate" oder "Welfare Trap") beschreibt ein
+                    Phänomen im Sozialsystem: <strong>Mehr arbeiten führt nicht zu mehr Geld</strong>, weil
+                    Sozialleistungen im gleichen Maße gekürzt werden wie das Einkommen steigt.
+                </p>
+
+                <div class="info-note warning">
+                    <strong>Das Kernproblem:</strong> Bei der Sozialhilfe/Mindestsicherung wird jeder Euro
+                    Einkommen zu 100% angerechnet – verdienen Sie €100 mehr, bekommen Sie €100 weniger
+                    Sozialhilfe. In Kombination mit Steuern und Sozialversicherung kann die effektive
+                    Belastung sogar <strong>über 100%</strong> steigen!
+                </div>
+            </section>
+
+            <!-- Example calculation -->
+            <section class="info-section glass-card">
+                <h2>Rechenbeispiel: Alleinerziehend mit 2 Kindern</h2>
+
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Brutto/Monat</th>
+                            <th>Netto</th>
+                            <th>Sozialhilfe</th>
+                            <th>Wohnbeihilfe</th>
+                            <th>Haushaltskasse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>€0</td>
+                            <td>€0</td>
+                            <td class="highlight-green">€1.861</td>
+                            <td>€200</td>
+                            <td><strong>€2.061</strong></td>
+                        </tr>
+                        <tr>
+                            <td>€500</td>
+                            <td>€453</td>
+                            <td>€1.408</td>
+                            <td>€150</td>
+                            <td><strong>€2.011</strong></td>
+                        </tr>
+                        <tr class="highlight-row-negative">
+                            <td>€1.000</td>
+                            <td>€823</td>
+                            <td>€1.038</td>
+                            <td>€100</td>
+                            <td class="highlight-red"><strong>€1.961</strong></td>
+                        </tr>
+                        <tr>
+                            <td>€1.500</td>
+                            <td>€1.116</td>
+                            <td>€745</td>
+                            <td>€50</td>
+                            <td><strong>€1.911</strong></td>
+                        </tr>
+                        <tr>
+                            <td>€2.000</td>
+                            <td>€1.409</td>
+                            <td>€452</td>
+                            <td>€0</td>
+                            <td><strong>€1.861</strong></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>€2.500</td>
+                            <td>€1.702</td>
+                            <td>€0</td>
+                            <td>€0</td>
+                            <td class="highlight-green"><strong>€2.121</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note warning">
+                    <strong>Das Paradoxon:</strong> Bei €0 Brutto steht dem Haushalt <strong>mehr Geld</strong>
+                    zur Verfügung als bei €1.000-2.000 Brutto! Erst ab ca. €2.500 zahlt sich Arbeit
+                    wirklich aus.
+                </div>
+            </section>
+
+            <!-- Why does this happen? -->
+            <section class="info-section glass-card">
+                <h2>Warum passiert das?</h2>
+
+                <h3>1. 100% Transferentzugsrate bei Sozialhilfe</h3>
+                <p>
+                    Das österreichische Sozialhilfesystem basiert auf dem <strong>Subsidiaritätsprinzip</strong>:
+                    Erst wenn alle eigenen Mittel aufgebraucht sind, gibt es Unterstützung. Das bedeutet:
+                </p>
+                <div class="formula-box">
+                    <code>
+                        Sozialhilfe = Mindeststandard - Nettoeinkommen - Familienbeihilfe<br><br>
+                        <strong>Beispiel (Alleinstehend):</strong><br>
+                        €1.209 (Mindeststandard) - €823 (Netto bei €1.000 Brutto) = €386 Sozialhilfe
+                    </code>
+                </div>
+
+                <h3>2. Kumulation mehrerer Leistungsentzüge</h3>
+                <p>Wenn das Einkommen steigt, fallen oft <strong>mehrere Leistungen gleichzeitig</strong> weg:</p>
+                <ul class="benefit-list">
+                    <li>Sozialhilfe/Mindestsicherung (100% Anrechnung)</li>
+                    <li>Wohnbeihilfe (wird reduziert)</li>
+                    <li>Gleichzeitig steigen SV-Beiträge und Steuern</li>
+                </ul>
+
+                <h3>3. Effektive Grenzbelastung</h3>
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Grenzbelastung</th>
+                            <th>Bedeutung</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="highlight-green">
+                                < 50%</td>
+                            <td>Arbeit lohnt sich deutlich</td>
+                        </tr>
+                        <tr>
+                            <td>50-80%</td>
+                            <td>Arbeit lohnt sich moderat</td>
+                        </tr>
+                        <tr>
+                            <td>80-100%</td>
+                            <td>Arbeit lohnt sich kaum</td>
+                        </tr>
+                        <tr>
+                            <td class="highlight-red">> 100%</td>
+                            <td><strong>Arbeit kostet Geld!</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- Official sources -->
+            <section class="info-section glass-card">
+                <h2>Offizielle Quellen</h2>
+                <p class="section-intro">
+                    Dieses Phänomen ist <strong>kein Rechenfehler</strong> – es wird von offiziellen Stellen
+                    dokumentiert:
+                </p>
+
+                <div class="references-grid">
+                    <a href="https://armutskonferenz.at" target="_blank" rel="noopener" class="reference-card">
+                        <span class="ref-icon">AK</span>
+                        <span class="ref-title">Armutskonferenz</span>
+                        <span class="ref-desc">Dokumentiert hohe Transferentzugsraten</span>
+                    </a>
+                    <a href="https://wifo.ac.at" target="_blank" rel="noopener" class="reference-card">
+                        <span class="ref-icon">WI</span>
+                        <span class="ref-title">WIFO</span>
+                        <span class="ref-desc">Wirtschaftsforschungsinstitut</span>
+                    </a>
+                    <a href="https://arbeiterkammer.at" target="_blank" rel="noopener" class="reference-card">
+                        <span class="ref-icon">AK</span>
+                        <span class="ref-title">Arbeiterkammer</span>
+                        <span class="ref-desc">Einkommensanrechnung bei Mindestsicherung</span>
+                    </a>
+                    <a href="https://sozialministerium.gv.at" target="_blank" rel="noopener" class="reference-card">
+                        <span class="ref-icon">SM</span>
+                        <span class="ref-title">Sozialministerium</span>
+                        <span class="ref-desc">Sozialhilfe-Grundsatzgesetz</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Solution: Wiedereinsteigerfreibetrag -->
+            <section class="info-section glass-card">
+                <h2>Lösung: Wiedereinsteigerfreibetrag</h2>
+                <p class="section-intro">
+                    Um die Armutsfalle abzumildern, gibt es den <strong>Wiedereinsteigerfreibetrag</strong>:
+                </p>
+
+                <div class="info-note">
+                    <strong>§8 Sozialhilfe-Grundsatzgesetz:</strong><br>
+                    Bei Aufnahme einer Erwerbstätigkeit werden <strong>35% des Nettoeinkommens</strong>
+                    für maximal <strong>12 Monate</strong> nicht auf die Sozialhilfe angerechnet.
+                </div>
+
+                <h3>Auswirkung des Freibetrags</h3>
+                <table class="calc-table">
+                    <thead>
+                        <tr>
+                            <th>Bei €1.000 Netto</th>
+                            <th>Ohne Freibetrag</th>
+                            <th>Mit Freibetrag</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Angerechnetes Einkommen</td>
+                            <td>€1.000</td>
+                            <td class="highlight-green">€650 (65%)</td>
+                        </tr>
+                        <tr>
+                            <td>Freibetrag</td>
+                            <td>€0</td>
+                            <td class="highlight-green">€350 (35%)</td>
+                        </tr>
+                        <tr>
+                            <td>Mehr in der Haushaltskasse</td>
+                            <td>—</td>
+                            <td class="highlight-green"><strong>+€350/Monat</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-note">
+                    <strong>Tipp:</strong> Im <a href="index.html">Rechner</a> können Sie den Wiedereinsteigerfreibetrag
+                    aktivieren, um zu sehen, wie sich dadurch Ihr Haushaltseinkommen verbessert.
+                </div>
+            </section>
+
+            <!-- What is NOT counted -->
+            <section class="info-section glass-card">
+                <h2>Was wird NICHT angerechnet?</h2>
+                <p>Folgende Leistungen werden <strong>nicht</strong> auf die Sozialhilfe angerechnet:</p>
+                <ul class="benefit-list">
+                    <li>✓ Familienbeihilfe</li>
+                    <li>✓ Kinderabsetzbetrag</li>
+                    <li>✓ Familienbonus Plus</li>
+                    <li>✓ Kindermehrbetrag</li>
+                    <li>✓ Sonderzahlungen (13./14. Gehalt)</li>
+                    <li>✓ Pflegegeld</li>
+                </ul>
+            </section>
+
+            <!-- Disclaimer -->
+            <section class="info-section glass-card">
+                <h2>Hinweis</h2>
+                <p>
+                    Diese Darstellung zeigt ein systemisches Problem des österreichischen Sozialsystems
+                    und dient der Information. Die exakten Beträge können je nach individueller Situation
+                    und Bundesland variieren.
+                </p>
+                <p>
+                    <strong>Das ist keine politische Stellungnahme</strong> – wir zeigen nur die faktische
+                    Funktionsweise des Systems.
+                </p>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                <a href="index.html">← Zurück zum Rechner</a>
+            </p>
+            <p class="footer-disclaimer">
+                WasBleibt.at © 2026 | Keine Gewähr für Richtigkeit.
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>
