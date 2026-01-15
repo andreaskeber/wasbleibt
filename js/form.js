@@ -38,9 +38,7 @@ const FormManager = {
             });
         });
 
-        // Add initial example with 2 children
-        this.addChild(7);
-        this.addChild(7);
+        // No initial children - start with empty form
 
         // Initial calculation
         this.calculate();

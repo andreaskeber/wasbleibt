@@ -706,7 +706,7 @@ input[type="number"] {
 
 .references-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: var(--spacing-md);
 }
 
@@ -803,7 +803,7 @@ input[type="number"] {
     }
 
     .references-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .breakdown-row {
