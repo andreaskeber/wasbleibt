@@ -149,13 +149,16 @@ const ChartManager = {
                     ctx.setLineDash([5, 5]);
                     ctx.stroke();
 
-                    // Label
-                    ctx.fillStyle = this.COLORS.currentMarker;
+                    // Label - white text with dark outline for visibility
+                    ctx.fillStyle = '#ffffff';
+                    ctx.strokeStyle = '#000000';
+                    ctx.lineWidth = 3;
                     ctx.font = 'bold 12px Inter, sans-serif';
                     ctx.textAlign = 'center';
-                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
-                    ctx.shadowBlur = 4;
-                    ctx.fillText('Ihr Einkommen', x, yAxis.top - 10);
+                    // Draw stroke first (outline), position inside chart
+                    ctx.strokeText('Ihr Einkommen', x, yAxis.top + 20);
+                    // Then fill (white text)
+                    ctx.fillText('Ihr Einkommen', x, yAxis.top + 20);
                     ctx.restore();
                 }
             }
