@@ -153,6 +153,8 @@ const ChartManager = {
                     ctx.fillStyle = this.COLORS.currentMarker;
                     ctx.font = 'bold 12px Inter, sans-serif';
                     ctx.textAlign = 'center';
+                    ctx.shadowColor = 'rgba(0, 0, 0, 0.8)';
+                    ctx.shadowBlur = 4;
                     ctx.fillText('Ihr Einkommen', x, yAxis.top - 10);
                     ctx.restore();
                 }

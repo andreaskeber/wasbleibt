@@ -316,8 +316,8 @@ input[type="number"] {
 
 /* Children Container */
 .children-container {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }

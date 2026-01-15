@@ -4,259 +4,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>was-bleibt.at - Bald verfügbar</title>
+    <title>was-bleibt.at - Österreich Steuer- & Sozialleistungsrechner</title>
     <meta name="description"
-        content="was-bleibt.at - Der transparente Rechner für dein echtes Netto-Einkommen in Österreich. Inklusive Steuern, Sozialabgaben und Sozialleistungen.">
+        content="Berechnen Sie Ihr tatsächliches Haushaltseinkommen inkl. Familienbeihilfe, Wohnbeihilfe und weiteren Sozialleistungen.">
+    <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-            color: #f8fafc;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Animated background gradient orbs */
-        .bg-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            top: -100px;
-            left: -100px;
-            animation-delay: 0s;
-        }
-
-        .orb-2 {
-            width: 300px;
-            height: 300px;
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            bottom: -50px;
-            right: -50px;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 200px;
-            height: 200px;
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            top: 50%;
-            left: 50%;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            25% {
-                transform: translate(30px, -30px) scale(1.1);
-            }
-
-            50% {
-                transform: translate(-20px, 20px) scale(0.95);
-            }
-
-            75% {
-                transform: translate(20px, 30px) scale(1.05);
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-        }
-
-        .logo {
-            margin-bottom: 2rem;
-        }
-
-        .logo-text {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #60a5fa, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.02em;
-        }
-
-        .logo-domain {
-            font-size: 1rem;
-            color: #64748b;
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(59, 130, 246, 0.15);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.875rem;
-            color: #60a5fa;
-            margin-bottom: 2rem;
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-            background: #22c55e;
-            border-radius: 50%;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            50% {
-                opacity: 0.5;
-                transform: scale(0.8);
-            }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subtitle {
-            font-size: 1.125rem;
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .feature-tag {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            color: #cbd5e1;
-        }
-
-        .feature-tag span {
-            margin-right: 0.5rem;
-        }
-
-        .footer {
-            color: #475569;
-            font-size: 0.875rem;
-        }
-
-        .footer a {
-            color: #64748b;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            color: #94a3b8;
-        }
-
-        @media (max-width: 640px) {
-            .logo-text {
-                font-size: 2.25rem;
-            }
-
-            h1 {
-                font-size: 1.75rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-    <div class="bg-orb orb-1"></div>
-    <div class="bg-orb orb-2"></div>
-    <div class="bg-orb orb-3"></div>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <h1>was-bleibt.at</h1>
+            </div>
+            <p class="tagline">Ihr tatsächliches Haushaltseinkommen in Österreich</p>
+        </header>
 
-    <div class="container">
-        <div class="logo">
-            <div class="logo-text">was-bleibt</div>
-            <div class="logo-domain">.at</div>
+        <!-- Disclaimer Banner -->
+        <div class="disclaimer-banner">
+            <span class="disclaimer-icon">Hinweis</span>
+            <p>
+                <strong>Hinweis:</strong> Diese Berechnung dient nur zur Orientierung.
+                Die tatsächlichen Leistungen können abweichen und müssen offiziell beantragt werden.
+                <a href="berechnungen.html">Berechnungsmethoden</a> |
+                <a href="armutsfalle.html">Was ist die Armutsfalle?</a> |
+                <a href="#references">Quellen & Rechtsgrundlagen</a>
+            </p>
         </div>
 
-        <div class="badge">
-            <span class="badge-dot"></span>
-            In Entwicklung
-        </div>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section glass-card">
+                <h2>Ihre Situation</h2>
 
-        <h1>Dein echtes Einkommen.<br><span class="highlight">Transparent berechnet.</span></h1>
+                <div class="form-grid">
+                    <!-- Income -->
+                    <div class="form-group">
+                        <label for="grossIncome">
+                            <span class="label-icon">💵</span>
+                            Monatliches Bruttoeinkommen
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="grossIncome" min="0" max="20000" step="100" value="2500"
+                                placeholder="2.500">
+                            <span class="input-suffix">€/Monat</span>
+                        </div>
+                        <small class="input-hint">Ihr Gehalt vor Abzügen (14x jährlich)</small>
+                    </div>
 
-        <p class="subtitle">
-            Wir arbeiten an einem Rechner, der dir zeigt, was wirklich von deinem
-            Gehalt übrig bleibt – inklusive Steuern, Sozialabgaben und Sozialleistungen.
-        </p>
+                    <!-- Family Status -->
+                    <div class="form-group">
+                        <label for="familyStatus">
+                            <span class="label-icon">👫</span>
+                            Familienstand
+                        </label>
+                        <select id="familyStatus">
+                            <option value="single">Alleinstehend</option>
+                            <option value="married">Verheiratet / Lebensgemeinschaft</option>
+                            <option value="singleParent">Alleinerziehend</option>
+                        </select>
+                    </div>
 
-        <div class="features">
-            <div class="feature-tag"><span>💰</span> Steuerberechnung</div>
-            <div class="feature-tag"><span>👨‍👩‍👧‍👦</span> Familienbonus</div>
-            <div class="feature-tag"><span>🏠</span> Wohnbeihilfe</div>
-            <div class="feature-tag"><span>📊</span> Realvergleich</div>
-        </div>
+                    <!-- Partner Income (conditional) -->
+                    <div class="form-group conditional" id="partnerIncomeGroup" style="display: none;">
+                        <label for="partnerIncome">
+                            <span class="label-icon">💼</span>
+                            Bruttoeinkommen Partner:in
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="partnerIncome" min="0" max="20000" step="100" value="0"
+                                placeholder="2.000">
+                            <span class="input-suffix">€/Monat</span>
+                        </div>
+                        <small class="input-hint">Monatliches Bruttoeinkommen des Partners (14x jährlich)</small>
+                    </div>
 
-        <p class="footer">
-            Ein Projekt für mehr Transparenz in Österreich
-        </p>
+                    <!-- Children -->
+                    <div class="form-group full-width">
+                        <label>
+                            <span class="label-icon">👶</span>
+                            Kinder
+                        </label>
+                        <div class="children-container" id="childrenContainer">
+                            <!-- Children will be added dynamically -->
+                        </div>
+                        <button type="button" class="btn-secondary" id="addChildBtn">
+                            <span>+</span> Kind hinzufügen
+                        </button>
+                    </div>
+
+                    <!-- Housing -->
+                    <div class="form-group">
+                        <label for="housingType">
+                            <span class="label-icon">🏠</span>
+                            Wohnsituation
+                        </label>
+                        <select id="housingType">
+                            <option value="rent">Miete</option>
+                            <option value="owned">Eigentum (ohne Kredit)</option>
+                            <option value="loan">Eigentum (mit Kredit)</option>
+                        </select>
+                    </div>
+
+                    <!-- Rent/Loan Amount -->
+                    <div class="form-group" id="housingCostGroup">
+                        <label for="housingCost">
+                            <span class="label-icon">💸</span>
+                            <span id="housingCostLabel">Monatliche Miete (Hauptmietzins)</span>
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="housingCost" min="0" max="3000" step="50" value="700"
+                                placeholder="700">
+                            <span class="input-suffix">€/Monat</span>
+                        </div>
+                        <small class="input-hint">Ohne Betriebskosten, Heizung, Strom</small>
+                    </div>
+
+                    <!-- Apartment Size -->
+                    <div class="form-group">
+                        <label for="apartmentSize">
+                            <span class="label-icon">📐</span>
+                            Wohnfläche
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="apartmentSize" min="20" max="300" step="5" value="60"
+                                placeholder="60">
+                            <span class="input-suffix">m²</span>
+                        </div>
+                    </div>
+
+                    <!-- Federal State -->
+                    <div class="form-group">
+                        <label for="federalState">
+                            <span class="label-icon">📍</span>
+                            Bundesland
+                        </label>
+                        <select id="federalState">
+                            <option value="vienna" selected>Wien</option>
+                            <option value="burgenland">Burgenland</option>
+                            <option value="carinthia">Kärnten</option>
+                            <option value="lowerAustria">Niederösterreich</option>
+                            <option value="upperAustria">Oberösterreich</option>
+                            <option value="salzburg">Salzburg</option>
+                            <option value="steiermark">Steiermark</option>
+                            <option value="tyrol">Tirol</option>
+                            <option value="vorarlberg">Vorarlberg</option>
+                        </select>
+                    </div>
+
+                    <!-- Wiedereinsteiger Freibetrag -->
+                    <div class="form-group full-width">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="wiedereinsteiger">
+                            <span class="checkbox-text">
+                                <span class="label-icon">🔄</span>
+                                Wiedereinsteiger:in (gerade Arbeit aufgenommen)
+                            </span>
+                        </label>
+                        <small class="input-hint">
+                            Bei Wiedereinstieg: 35% Freibetrag auf Nettoeinkommen für max. 12 Monate
+                            (<a href="armutsfalle.html">Mehr zur Armutsfalle</a>)
+                        </small>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-primary" id="calculateBtn">
+                    <span class="btn-icon">📊</span>
+                    Berechnen
+                </button>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section glass-card" id="resultsSection">
+                <h2>Ihr Haushaltseinkommen</h2>
+
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card highlight">
+                        <span class="card-label">Haushaltskasse gesamt</span>
+                        <span class="card-value" id="totalHousehold">€ 0</span>
+                        <span class="card-detail">Netto + Sozialleistungen</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="card-label">Nettoeinkommen</span>
+                        <span class="card-value" id="netIncome">€ 0</span>
+                        <span class="card-detail">Nach Steuern & SV</span>
+                    </div>
+                    <div class="summary-card benefits">
+                        <span class="card-label">Sozialleistungen</span>
+                        <span class="card-value" id="totalBenefits">€ 0</span>
+                        <span class="card-detail">Familienbeihilfe, Wohnbeihilfe, etc.</span>
+                    </div>
+                </div>
+
+                <!-- Detailed Breakdown -->
+                <div class="breakdown-section">
+                    <h3>Detaillierte Aufschlüsselung</h3>
+                    <div class="breakdown-table" id="breakdownTable">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Chart -->
+                <div class="chart-section">
+                    <h3>Vergleich: Haushaltskasse nach Bruttoeinkommen</h3>
+                    <p class="chart-description">
+                        Die Grafik zeigt, wie sich Ihr Haushaltseinkommen (Netto + Sozialleistungen)
+                        bei unterschiedlichen Bruttogehältern entwickelt. Die <strong>vertikale Linie</strong>
+                        markiert Ihr aktuelles Einkommen.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="incomeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-section" id="recommendationsSection">
+                    <h3>Empfehlungen</h3>
+                    <div class="recommendations-content" id="recommendationsContent">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- References Section -->
+        <section class="references-section glass-card" id="references">
+            <h2>Quellen & Rechtsgrundlagen</h2>
+            <div class="references-grid">
+                <a href="https://bruttonetto.arbeiterkammer.at" target="_blank" rel="noopener" class="reference-card">
+                    <span class="ref-icon">AK</span>
+                    <span class="ref-title">AK Brutto-Netto-Rechner</span>
+                    <span class="ref-desc">Offizielle Netto-Berechnung</span>
+                </a>
+                <a href="https://www.oesterreich.gv.at" target="_blank" rel="noopener" class="reference-card">
+                    <span class="ref-icon">AT</span>
+                    <span class="ref-title">oesterreich.gv.at</span>
+                    <span class="ref-desc">Österreichisches Regierungsportal</span>
+                </a>
+                <a href="https://www.bundeskanzleramt.gv.at/service/familienbeihilfe.html" target="_blank"
+                    rel="noopener" class="reference-card">
+                    <span class="ref-icon">BKA</span>
+                    <span class="ref-title">Familienbeihilfe</span>
+                    <span class="ref-desc">Bundeskanzleramt</span>
+                </a>
+                <a href="https://www.bmf.gv.at" target="_blank" rel="noopener" class="reference-card">
+                    <span class="ref-icon">BMF</span>
+                    <span class="ref-title">BMF</span>
+                    <span class="ref-desc">Finanzministerium - Steuern</span>
+                </a>
+                <a href="https://www.wien.gv.at/wohnen/wohnbeihilfe/" target="_blank" rel="noopener"
+                    class="reference-card">
+                    <span class="ref-icon">W</span>
+                    <span class="ref-title">Wohnbeihilfe Wien</span>
+                    <span class="ref-desc">Wiener Wohnbeihilfe</span>
+                </a>
+                <a href="https://www.arbeiterkammer.at" target="_blank" rel="noopener" class="reference-card">
+                    <span class="ref-icon">AK</span>
+                    <span class="ref-title">Arbeiterkammer</span>
+                    <span class="ref-desc">Sozialleistungen & Beratung</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                was-bleibt.at © 2026 | Inspiriert von
+                <a href="https://twitter.com/sozi_simon" target="_blank" rel="noopener">@sozi_simon</a> (DE)
+            </p>
+            <p class="footer-disclaimer">
+                Keine Gewähr für Richtigkeit. Alle Angaben ohne Gewähr.
+            </p>
+            <p class="footer-impressum">
+                <strong>Impressum:</strong> Andreas K. | Privates Informationsprojekt
+            </p>
+        </footer>
     </div>
+
+    <!-- Scripts -->
+    <script src="js/calculator.js"></script>
+    <script src="js/benefits.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/form.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
