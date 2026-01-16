@@ -139,13 +139,13 @@ const FormManager = {
      */
     initStickyBar() {
         const stickyBar = document.getElementById('stickyResultBar');
-        const resultsSection = document.querySelector('.results-section');
+        const inputSection = document.querySelector('.input-section');
 
-        if (!stickyBar || !resultsSection) return;
+        if (!stickyBar || !inputSection) return;
 
         window.addEventListener('scroll', () => {
-            const resultsTop = resultsSection.getBoundingClientRect().top;
-            if (resultsTop < -100) {
+            const inputBottom = inputSection.getBoundingClientRect().bottom;
+            if (inputBottom < 0) {
                 stickyBar.classList.add('visible');
             } else {
                 stickyBar.classList.remove('visible');

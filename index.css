@@ -449,7 +449,6 @@ input[type="number"] {
 /* Child Counter (replaces btn-add-child) */
 .child-counter {
     flex: 1;
-    min-width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -516,7 +515,6 @@ input[type="number"] {
 
 .status-card {
     flex: 1;
-    min-width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
