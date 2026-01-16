@@ -1339,16 +1339,23 @@ input[type="number"] {
 
 .table-wrapper .calc-table {
     margin-bottom: 0;
+    min-width: 400px;
+    /* Ensures table scrolls instead of squishing */
 }
 
 @media (max-width: 600px) {
     .calc-table {
-        font-size: var(--font-size-xs);
+        font-size: 11px;
     }
 
     .calc-table th,
     .calc-table td {
-        padding: var(--spacing-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        white-space: nowrap;
+    }
+
+    .calc-table th {
+        font-size: 10px;
     }
 }
 

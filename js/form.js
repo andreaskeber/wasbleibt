@@ -70,6 +70,19 @@ const FormManager = {
     /**
      * Handle status card toggle (Alleinstehend / Verheiratet)
      */
+    // Default values for single vs married households (based on Austrian statistics 2024)
+    defaults: {
+        single: {
+            rent: 700,
+            apartmentSize: 60
+        },
+        married: {
+            partnerIncome: 1800,  // Typical part-time or lower-earning partner
+            rent: 900,
+            apartmentSize: 75
+        }
+    },
+
     handleStatusToggle(status) {
         // Update visual state
         document.querySelectorAll('.status-card').forEach(card => {
@@ -80,13 +93,37 @@ const FormManager = {
         // Update hidden field for compatibility
         document.getElementById('familyStatus').value = status;
 
-        // Show/hide partner income field
+        // Show/hide partner income field and update defaults
         const income2Group = document.getElementById('income2Group');
+        const partnerIncomeInput = document.getElementById('partnerIncome');
+        const housingCostInput = document.getElementById('housingCost');
+        const apartmentSizeInput = document.getElementById('apartmentSize');
+
         if (status === 'married') {
             income2Group.style.display = 'block';
+
+            // Set realistic defaults for married/partnered households
+            // Only set if current value is the single default (to not overwrite user input)
+            if (parseFloat(partnerIncomeInput.value) === 0) {
+                partnerIncomeInput.value = this.defaults.married.partnerIncome;
+            }
+            if (parseFloat(housingCostInput.value) === this.defaults.single.rent) {
+                housingCostInput.value = this.defaults.married.rent;
+            }
+            if (parseFloat(apartmentSizeInput.value) === this.defaults.single.apartmentSize) {
+                apartmentSizeInput.value = this.defaults.married.apartmentSize;
+            }
         } else {
             income2Group.style.display = 'none';
-            document.getElementById('partnerIncome').value = 0;
+            partnerIncomeInput.value = 0;
+
+            // Reset to single defaults if values are at married defaults
+            if (parseFloat(housingCostInput.value) === this.defaults.married.rent) {
+                housingCostInput.value = this.defaults.single.rent;
+            }
+            if (parseFloat(apartmentSizeInput.value) === this.defaults.married.apartmentSize) {
+                apartmentSizeInput.value = this.defaults.single.apartmentSize;
+            }
         }
 
         this.calculate();
