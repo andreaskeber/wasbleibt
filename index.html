@@ -102,10 +102,14 @@
                             </svg>
                             <span class="status-text">Verheiratet</span>
                         </button>
-                        <button type="button" class="btn-add-child" id="addChildBtnTop">
-                            <span style="font-size: 1.5rem;">👶</span>
-                            <span class="status-text">+ Kind</span>
-                        </button>
+                        <div class="child-counter" id="childCounter">
+                            <span class="child-icon">👶</span>
+                            <span class="child-count" id="childCount">0</span>
+                            <div class="child-buttons">
+                                <button type="button" class="child-btn plus" id="addChildBtnTop">+</button>
+                                <button type="button" class="child-btn minus" id="removeChildBtn">−</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="bundesland-row">
                         <label for="federalState">📍 Bundesland</label>
@@ -166,18 +170,12 @@
                 <input type="hidden" id="familyStatus" value="single">
 
                 <div class="form-grid">
-                    <!-- Children -->
-                    <div class="form-group full-width">
-                        <label>
-                            <span class="label-icon">👶</span>
-                            Kinder
-                        </label>
+                    <!-- Children (shown only when children exist) -->
+                    <div class="form-group full-width children-section" id="childrenSection" style="display: none;">
+                        <label>👶 Kinder</label>
                         <div class="children-container" id="childrenContainer">
                             <!-- Children will be added dynamically -->
                         </div>
-                        <button type="button" class="btn-secondary" id="addChildBtn">
-                            <span>+</span> Kind hinzufügen
-                        </button>
                     </div>
 
                     <!-- Housing -->
@@ -191,6 +189,7 @@
                             <option value="owned">Eigentum (ohne Kredit)</option>
                             <option value="loan">Eigentum (mit Kredit)</option>
                         </select>
+                        <small class="input-hint">&nbsp;</small>
                     </div>
 
                     <!-- Rent/Loan Amount -->
@@ -218,6 +217,7 @@
                                 placeholder="60">
                             <span class="input-suffix">m²</span>
                         </div>
+                        <small class="input-hint">&nbsp;</small>
                     </div>
 
                     <!-- Wiedereinsteiger Freibetrag -->

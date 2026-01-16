@@ -274,8 +274,9 @@ body::before {
 input[type="number"],
 select {
     width: 100%;
+    height: 48px;
     padding: 0.75rem 1rem;
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     color: var(--text-primary);
@@ -355,8 +356,32 @@ input[type="number"] {
 }
 
 .bundesland-row select {
-    flex: 1;
-    max-width: 200px;
+    width: calc(33.33% - var(--spacing-md));
+}
+
+/* Mobile Responsive: Status Row */
+@media (max-width: 600px) {
+    .status-row {
+        flex-direction: column;
+    }
+
+    .status-row>* {
+        width: 100%;
+    }
+
+    .bundesland-row select {
+        width: 100%;
+    }
+
+    .child-counter {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .child-buttons {
+        width: auto;
+    }
 }
 
 .status-cards {
@@ -388,27 +413,66 @@ input[type="number"] {
     font-size: var(--font-size-sm);
 }
 
-.btn-add-child {
+/* Child Counter (replaces btn-add-child) */
+.child-counter {
     flex: 1;
     min-width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-sm);
-    padding: var(--spacing-lg);
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
-    font-size: var(--font-size-sm);
+}
+
+.child-icon {
+    font-size: 1.5rem;
+}
+
+.child-count {
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+}
+
+.child-buttons {
+    display: flex;
+    gap: var(--spacing-xs);
+    width: 100%;
+}
+
+.child-btn {
+    flex: 1;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    font-size: var(--font-size-lg);
+    font-weight: 600;
     cursor: pointer;
-    transition: all var(--transition-base);
+    transition: all var(--transition-fast);
     color: var(--text-secondary);
 }
 
-.btn-add-child:hover {
+.child-btn:hover {
     border-color: var(--accent-primary);
     color: var(--accent-primary);
+}
+
+.child-btn.plus:hover {
+    background: rgba(46, 125, 50, 0.1);
+    border-color: var(--highlight-green);
+    color: var(--highlight-green);
+}
+
+.child-btn.minus:hover {
+    background: rgba(183, 28, 28, 0.1);
+    border-color: var(--austria-red);
+    color: var(--austria-red);
 }
 
 .status-cards {

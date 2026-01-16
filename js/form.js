@@ -10,12 +10,14 @@ const FormManager = {
      * Initialize form event listeners
      */
     init() {
-        // Add child buttons (bottom and top)
-        document.getElementById('addChildBtn')?.addEventListener('click', () => {
-            this.addChild();
-        });
+        // Child counter buttons (+/-)
         document.getElementById('addChildBtnTop')?.addEventListener('click', () => {
             this.addChild();
+            this.updateChildCount();
+        });
+        document.getElementById('removeChildBtn')?.addEventListener('click', () => {
+            this.removeLastChild();
+            this.updateChildCount();
         });
 
         // Status toggle cards
@@ -284,7 +286,35 @@ const FormManager = {
     removeChild(id) {
         this.children = this.children.filter(c => c.id !== id);
         this.renderChildren();
+        this.updateChildCount();
         this.calculate();
+    },
+
+    /**
+     * Remove the last child from the list (for - button)
+     */
+    removeLastChild() {
+        if (this.children.length > 0) {
+            this.children.pop();
+            this.renderChildren();
+            this.calculate();
+        }
+    },
+
+    /**
+     * Update child count display and show/hide children section
+     */
+    updateChildCount() {
+        const countEl = document.getElementById('childCount');
+        const sectionEl = document.getElementById('childrenSection');
+
+        if (countEl) {
+            countEl.textContent = this.children.length;
+        }
+
+        if (sectionEl) {
+            sectionEl.style.display = this.children.length > 0 ? 'block' : 'none';
+        }
     },
 
     /**
