@@ -1316,6 +1316,28 @@ input[type="number"] {
     margin-bottom: var(--spacing-lg);
 }
 
+/* Make tables scrollable on mobile */
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: var(--spacing-lg);
+}
+
+.table-wrapper .calc-table {
+    margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+    .calc-table {
+        font-size: var(--font-size-xs);
+    }
+
+    .calc-table th,
+    .calc-table td {
+        padding: var(--spacing-sm);
+    }
+}
+
 .calc-table th,
 .calc-table td {
     padding: var(--spacing-md);
