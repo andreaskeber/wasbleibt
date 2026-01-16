@@ -82,48 +82,93 @@
             <section class="input-section glass-card">
                 <h2>Ihre Situation</h2>
 
+                <!-- Family Status Toggle Cards + Bundesland + Kind -->
+                <div class="status-toggle-group">
+                    <label class="toggle-label">Ich bin:</label>
+                    <div class="status-row">
+                        <div class="status-cards">
+                            <button type="button" class="status-card active" data-status="single" id="statusSingle">
+                                <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="32" cy="20" r="12" />
+                                    <path d="M16 56c0-13 7-20 16-20s16 7 16 20" />
+                                </svg>
+                                <span class="status-text">Alleinstehend</span>
+                            </button>
+                            <button type="button" class="status-card" data-status="married" id="statusMarried">
+                                <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
+                                    <circle cx="22" cy="20" r="10" />
+                                    <circle cx="42" cy="20" r="10" />
+                                    <path d="M8 56c0-11 6-17 14-17s14 6 14 17" />
+                                    <path d="M28 56c0-11 6-17 14-17s14 6 14 17" />
+                                </svg>
+                                <span class="status-text">Verheiratet / Lebensgemeinschaft</span>
+                            </button>
+                        </div>
+                        <div class="quick-options">
+                            <div class="quick-option">
+                                <label for="federalState">📍 Bundesland</label>
+                                <select id="federalState">
+                                    <option value="vienna" selected>Wien</option>
+                                    <option value="burgenland">Burgenland</option>
+                                    <option value="carinthia">Kärnten</option>
+                                    <option value="lowerAustria">Niederösterreich</option>
+                                    <option value="upperAustria">Oberösterreich</option>
+                                    <option value="salzburg">Salzburg</option>
+                                    <option value="steiermark">Steiermark</option>
+                                    <option value="tyrol">Tirol</option>
+                                    <option value="vorarlberg">Vorarlberg</option>
+                                </select>
+                            </div>
+                            <button type="button" class="btn-add-child" id="addChildBtnTop">
+                                👶 + Kind
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Income Section -->
+                <div class="income-section">
+                    <div class="income-header">
+                        <label class="toggle-label">Mein Einkommen</label>
+                        <div class="period-toggle">
+                            <label class="period-option">
+                                <input type="radio" name="incomePeriod" value="monthly" checked>
+                                <span>monatlich</span>
+                            </label>
+                            <label class="period-option">
+                                <input type="radio" name="incomePeriod" value="yearly">
+                                <span>jährlich</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="income-fields">
+                        <div class="income-field" id="income1Group">
+                            <label for="grossIncome" id="incomeLabel1">Ich verdiene brutto <span
+                                    id="periodLabel1">monatlich</span></label>
+                            <div class="input-wrapper large">
+                                <input type="number" id="grossIncome" min="0" max="500000" step="100" value="2500"
+                                    placeholder="2.500">
+                                <span class="input-suffix" id="incomeSuffix1">€/Monat</span>
+                            </div>
+                        </div>
+
+                        <div class="income-field" id="income2Group" style="display: none;">
+                            <label for="partnerIncome" id="incomeLabel2">Partner:in verdient brutto <span
+                                    id="periodLabel2">monatlich</span></label>
+                            <div class="input-wrapper large">
+                                <input type="number" id="partnerIncome" min="0" max="500000" step="100" value="0"
+                                    placeholder="0">
+                                <span class="input-suffix" id="incomeSuffix2">€/Monat</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden legacy field for compatibility -->
+                <input type="hidden" id="familyStatus" value="single">
+
                 <div class="form-grid">
-                    <!-- Income -->
-                    <div class="form-group">
-                        <label for="grossIncome">
-                            <span class="label-icon">💵</span>
-                            Monatliches Bruttoeinkommen
-                        </label>
-                        <div class="input-wrapper">
-                            <input type="number" id="grossIncome" min="0" max="20000" step="100" value="2500"
-                                placeholder="2.500">
-                            <span class="input-suffix">€/Monat</span>
-                        </div>
-                        <small class="input-hint">Ihr Gehalt vor Abzügen (14x jährlich)</small>
-                    </div>
-
-                    <!-- Family Status -->
-                    <div class="form-group">
-                        <label for="familyStatus">
-                            <span class="label-icon">👫</span>
-                            Familienstand
-                        </label>
-                        <select id="familyStatus">
-                            <option value="single">Alleinstehend</option>
-                            <option value="married">Verheiratet / Lebensgemeinschaft</option>
-                            <option value="singleParent">Alleinerziehend</option>
-                        </select>
-                    </div>
-
-                    <!-- Partner Income (conditional) -->
-                    <div class="form-group conditional" id="partnerIncomeGroup" style="display: none;">
-                        <label for="partnerIncome">
-                            <span class="label-icon">💼</span>
-                            Bruttoeinkommen Partner:in
-                        </label>
-                        <div class="input-wrapper">
-                            <input type="number" id="partnerIncome" min="0" max="20000" step="100" value="0"
-                                placeholder="2.000">
-                            <span class="input-suffix">€/Monat</span>
-                        </div>
-                        <small class="input-hint">Monatliches Bruttoeinkommen des Partners (14x jährlich)</small>
-                    </div>
-
                     <!-- Children -->
                     <div class="form-group full-width">
                         <label>
@@ -176,25 +221,6 @@
                                 placeholder="60">
                             <span class="input-suffix">m²</span>
                         </div>
-                    </div>
-
-                    <!-- Federal State -->
-                    <div class="form-group">
-                        <label for="federalState">
-                            <span class="label-icon">📍</span>
-                            Bundesland
-                        </label>
-                        <select id="federalState">
-                            <option value="vienna" selected>Wien</option>
-                            <option value="burgenland">Burgenland</option>
-                            <option value="carinthia">Kärnten</option>
-                            <option value="lowerAustria">Niederösterreich</option>
-                            <option value="upperAustria">Oberösterreich</option>
-                            <option value="salzburg">Salzburg</option>
-                            <option value="steiermark">Steiermark</option>
-                            <option value="tyrol">Tirol</option>
-                            <option value="vorarlberg">Vorarlberg</option>
-                        </select>
                     </div>
 
                     <!-- Wiedereinsteiger Freibetrag -->

@@ -29,6 +29,12 @@ const TaxCalculator = {
     // Geringfügigkeitsgrenze 2025
     MARGINAL_INCOME_THRESHOLD: 551.10,
 
+    // Absetzbeträge 2025
+    TAX_CREDITS: {
+        verkehrsabsetzbetrag: 487,      // für alle Arbeitnehmer
+        sonderzahlungenFreibetrag: 620  // Freibetrag für 13./14. Gehalt
+    },
+
     /**
      * Calculate annual income tax using progressive brackets
      * @param {number} annualGross - Annual gross income
@@ -60,7 +66,7 @@ const TaxCalculator = {
         for (let i = 0; i < this.TAX_BRACKETS_2025.length; i++) {
             const bracket = this.TAX_BRACKETS_2025[i];
             if (annualGross <= bracket.min) break;
-            
+
             const taxableAmount = Math.min(annualGross, bracket.max) - bracket.min;
             if (taxableAmount > 0) {
                 tax += taxableAmount * bracket.rate;
@@ -78,7 +84,7 @@ const TaxCalculator = {
     calculateSocialSecurity(monthlyGross) {
         // Cap at maximum contribution base
         const effectiveBase = Math.min(monthlyGross, this.SOCIAL_SECURITY.maxMonthlyBase);
-        
+
         // Below marginal threshold = no social security
         if (monthlyGross < this.MARGINAL_INCOME_THRESHOLD) {
             return {
@@ -107,36 +113,53 @@ const TaxCalculator = {
      */
     calculateMonthlyNet(monthlyGross, options = {}) {
         // Austria has 14 monthly payments (incl. Urlaubs- and Weihnachtsgeld)
-        // For monthly calculation, we use the standard monthly view
-        
-        // Annual gross (14 payments)
-        const annualGross = monthlyGross * 14;
-        
-        // Social security (monthly)
+        // The 13th and 14th salaries (Sonderzahlungen) are taxed at a flat 6% rate
+
+        // Social security (monthly, same for all 14 payments)
         const socialSecurity = this.calculateSocialSecurity(monthlyGross);
-        
-        // Calculate taxable income (annual)
-        // Social security is deducted before tax
-        const annualSocialSecurity = socialSecurity.total * 12 + 
-            (monthlyGross <= this.SOCIAL_SECURITY.maxMonthlyBase ? 
-                socialSecurity.total * 2 : // 13th and 14th month
-                this.SOCIAL_SECURITY.maxMonthlyBase * this.SOCIAL_SECURITY.total * 2);
-        
-        const taxableIncome = annualGross - annualSocialSecurity;
-        
-        // Calculate income tax
-        let annualTax = this.calculateIncomeTax(taxableIncome);
-        
-        // Apply tax credits
-        const taxCredits = options.taxCredits || 0;
-        annualTax = Math.max(0, annualTax - taxCredits);
-        
-        // Monthly tax
+
+        // === Regular salary (12 months) ===
+        // Annual gross from regular payments
+        const annualRegularGross = monthlyGross * 12;
+
+        // Social security for regular payments
+        const annualRegularSS = socialSecurity.total * 12;
+
+        // Taxable income for regular payments
+        const taxableRegular = annualRegularGross - annualRegularSS;
+
+        // Progressive tax on regular income
+        const regularTax = this.calculateIncomeTax(taxableRegular);
+
+        // === Sonderzahlungen (13th + 14th salary) ===
+        // These are taxed at a flat 6% rate (Jahressechstel-Begünstigung)
+        const sonderzahlungenGross = monthlyGross * 2;
+        const sonderzahlungenSS = socialSecurity.total * 2;
+        const sonderzahlungenTaxable = sonderzahlungenGross - sonderzahlungenSS;
+
+        // 6% flat tax on Sonderzahlungen (with Freibetrag)
+        const sonderzahlungenTax = Math.max(0, (sonderzahlungenTaxable - this.TAX_CREDITS.sonderzahlungenFreibetrag) * 0.06);
+
+        // === Total annual tax ===
+        let annualTax = regularTax + sonderzahlungenTax;
+
+        // Apply standard tax credits (Verkehrsabsetzbetrag for all employees)
+        annualTax = Math.max(0, annualTax - this.TAX_CREDITS.verkehrsabsetzbetrag);
+
+        // Apply additional tax credits if provided
+        const additionalCredits = options.taxCredits || 0;
+        annualTax = Math.max(0, annualTax - additionalCredits);
+
+        // === Monthly values (averaged over 12 months for display) ===
         const monthlyTax = annualTax / 12;
-        
-        // Net income
+
+        // Net income (monthly average)
         const monthlyNet = monthlyGross - socialSecurity.total - monthlyTax;
-        
+
+        // Annual totals
+        const annualGross = monthlyGross * 14;
+        const annualSocialSecurity = socialSecurity.total * 14;
+
         return {
             gross: monthlyGross,
             annualGross: annualGross,
@@ -146,7 +169,7 @@ const TaxCalculator = {
             taxCredits: taxCredits,
             net: Math.max(0, monthlyNet),
             effectiveTaxRate: annualGross > 0 ? (annualTax / annualGross) * 100 : 0,
-            effectiveTotalRate: annualGross > 0 ? 
+            effectiveTotalRate: annualGross > 0 ?
                 ((annualTax + annualSocialSecurity) / annualGross) * 100 : 0
         };
     },

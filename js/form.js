@@ -10,14 +10,26 @@ const FormManager = {
      * Initialize form event listeners
      */
     init() {
-        // Add child button
+        // Add child buttons (bottom and top)
         document.getElementById('addChildBtn')?.addEventListener('click', () => {
             this.addChild();
         });
+        document.getElementById('addChildBtnTop')?.addEventListener('click', () => {
+            this.addChild();
+        });
 
-        // Family status change (show/hide partner income)
-        document.getElementById('familyStatus')?.addEventListener('change', (e) => {
-            this.updatePartnerIncomeVisibility(e.target.value);
+        // Status toggle cards
+        document.querySelectorAll('.status-card').forEach(card => {
+            card.addEventListener('click', () => {
+                this.handleStatusToggle(card.dataset.status);
+            });
+        });
+
+        // Period toggle (monthly/yearly)
+        document.querySelectorAll('input[name="incomePeriod"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                this.handlePeriodToggle(e.target.value);
+            });
         });
 
         // Housing type change (update label)
@@ -50,6 +62,73 @@ const FormManager = {
         this.loadFromURL();
 
         // Initial calculation
+        this.calculate();
+    },
+
+    /**
+     * Handle status card toggle (Alleinstehend / Verheiratet)
+     */
+    handleStatusToggle(status) {
+        // Update visual state
+        document.querySelectorAll('.status-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        document.querySelector(`[data-status="${status}"]`)?.classList.add('active');
+
+        // Update hidden field for compatibility
+        document.getElementById('familyStatus').value = status;
+
+        // Show/hide partner income field
+        const income2Group = document.getElementById('income2Group');
+        if (status === 'married') {
+            income2Group.style.display = 'block';
+        } else {
+            income2Group.style.display = 'none';
+            document.getElementById('partnerIncome').value = 0;
+        }
+
+        this.calculate();
+    },
+
+    /**
+     * Handle period toggle (monthly/yearly)
+     */
+    handlePeriodToggle(period) {
+        const isYearly = period === 'yearly';
+        const multiplier = isYearly ? 14 : 1; // Austria has 14 salaries
+        const divisor = isYearly ? 1 : 14;
+
+        // Update labels
+        const periodText = isYearly ? 'jährlich' : 'monatlich';
+        const suffix = isYearly ? '€/Jahr' : '€/Monat';
+
+        document.getElementById('periodLabel1').textContent = periodText;
+        document.getElementById('periodLabel2').textContent = periodText;
+        document.getElementById('incomeSuffix1').textContent = suffix;
+        document.getElementById('incomeSuffix2').textContent = suffix;
+
+        // Convert current values
+        const income1 = document.getElementById('grossIncome');
+        const income2 = document.getElementById('partnerIncome');
+
+        // Store current period for conversion calculation
+        const wasYearly = income1.dataset.period === 'yearly';
+
+        if (wasYearly !== isYearly) {
+            if (isYearly) {
+                // Convert monthly to yearly
+                income1.value = Math.round(parseFloat(income1.value || 0) * 14);
+                income2.value = Math.round(parseFloat(income2.value || 0) * 14);
+            } else {
+                // Convert yearly to monthly
+                income1.value = Math.round(parseFloat(income1.value || 0) / 14);
+                income2.value = Math.round(parseFloat(income2.value || 0) / 14);
+            }
+        }
+
+        income1.dataset.period = period;
+        income2.dataset.period = period;
+
         this.calculate();
     },
 
@@ -355,10 +434,24 @@ const FormManager = {
      * @returns {object} Form data
      */
     getFormData() {
+        const grossInput = document.getElementById('grossIncome');
+        const partnerInput = document.getElementById('partnerIncome');
+        const isYearly = grossInput?.dataset.period === 'yearly';
+
+        // Get raw values
+        let monthlyGross = parseFloat(grossInput?.value) || 0;
+        let partnerIncome = parseFloat(partnerInput?.value) || 0;
+
+        // Convert yearly to monthly if needed
+        if (isYearly) {
+            monthlyGross = monthlyGross / 14;
+            partnerIncome = partnerIncome / 14;
+        }
+
         return {
-            monthlyGross: parseFloat(document.getElementById('grossIncome')?.value) || 0,
+            monthlyGross: monthlyGross,
             familyStatus: document.getElementById('familyStatus')?.value || 'single',
-            partnerIncome: parseFloat(document.getElementById('partnerIncome')?.value) || 0,
+            partnerIncome: partnerIncome,
             childrenAges: this.children.map(c => c.age),
             children: this.children,  // Full children data for childcare costs
             housingType: document.getElementById('housingType')?.value || 'rent',
