@@ -38,10 +38,149 @@ const FormManager = {
             });
         });
 
-        // No initial children - start with empty form
+        // Sticky bar scroll listener
+        this.initStickyBar();
+
+        // Share button
+        document.getElementById('shareBtn')?.addEventListener('click', () => {
+            this.shareResults();
+        });
+
+        // Load URL parameters if present
+        this.loadFromURL();
 
         // Initial calculation
         this.calculate();
+    },
+
+    /**
+     * Initialize sticky result bar
+     */
+    initStickyBar() {
+        const stickyBar = document.getElementById('stickyResultBar');
+        const resultsSection = document.querySelector('.results-section');
+
+        if (!stickyBar || !resultsSection) return;
+
+        window.addEventListener('scroll', () => {
+            const resultsTop = resultsSection.getBoundingClientRect().top;
+            if (resultsTop < -100) {
+                stickyBar.classList.add('visible');
+            } else {
+                stickyBar.classList.remove('visible');
+            }
+        });
+    },
+
+    /**
+     * Load form values from URL parameters
+     */
+    loadFromURL() {
+        const params = new URLSearchParams(window.location.search);
+
+        // Basic inputs
+        if (params.has('brutto')) {
+            document.getElementById('grossIncome').value = params.get('brutto');
+        }
+        if (params.has('status')) {
+            const status = document.getElementById('familyStatus');
+            status.value = params.get('status');
+            this.updatePartnerIncomeVisibility(status.value);
+        }
+        if (params.has('partner')) {
+            document.getElementById('partnerIncome').value = params.get('partner');
+        }
+        if (params.has('miete')) {
+            document.getElementById('monthlyRent').value = params.get('miete');
+        }
+        if (params.has('bundesland')) {
+            document.getElementById('federalState').value = params.get('bundesland');
+        }
+
+        // Children (format: kinder=5,7,12)
+        if (params.has('kinder')) {
+            const ages = params.get('kinder').split(',').map(a => parseInt(a)).filter(a => !isNaN(a));
+            ages.forEach(age => this.addChild(age));
+        }
+    },
+
+    /**
+     * Generate URL with current parameters
+     */
+    generateShareURL() {
+        const formData = this.getFormData();
+        const params = new URLSearchParams();
+
+        params.set('brutto', formData.monthlyGross);
+
+        if (formData.familyStatus !== 'single') {
+            params.set('status', formData.familyStatus);
+        }
+        if (formData.partnerIncome > 0) {
+            params.set('partner', formData.partnerIncome);
+        }
+        if (formData.monthlyRent > 0) {
+            params.set('miete', formData.monthlyRent);
+        }
+        if (formData.federalState !== 'wien') {
+            params.set('bundesland', formData.federalState);
+        }
+        if (formData.childrenAges && formData.childrenAges.length > 0) {
+            params.set('kinder', formData.childrenAges.join(','));
+        }
+
+        return window.location.origin + window.location.pathname + '?' + params.toString();
+    },
+
+    /**
+     * Share results (copy URL or native share)
+     */
+    async shareResults() {
+        const url = this.generateShareURL();
+
+        // Update URL without reload
+        window.history.replaceState({}, '', url);
+
+        // Try native share, fallback to clipboard
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: 'was-bleibt.at - Meine Berechnung',
+                    text: `Haushaltskasse: ${document.getElementById('stickyTotal').textContent}`,
+                    url: url
+                });
+            } catch (e) {
+                // User cancelled or error - copy to clipboard instead
+                this.copyToClipboard(url);
+            }
+        } else {
+            this.copyToClipboard(url);
+        }
+    },
+
+    /**
+     * Copy text to clipboard with feedback
+     */
+    copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const btn = document.getElementById('shareBtn');
+            const originalTitle = btn.title;
+            btn.title = 'Link kopiert!';
+            btn.style.background = 'rgba(46, 125, 50, 0.8)';
+            setTimeout(() => {
+                btn.title = originalTitle;
+                btn.style.background = '';
+            }, 2000);
+        });
+    },
+
+    /**
+     * Update sticky bar values
+     */
+    updateStickyBar(totalHousehold, netIncome, benefits) {
+        document.getElementById('stickyTotal').textContent = this.formatCurrency(totalHousehold);
+        document.getElementById('stickyNet').textContent = this.formatCurrency(netIncome);
+        document.getElementById('stickyBenefits').textContent = '+' + this.formatCurrency(benefits);
     },
 
     /**
@@ -273,6 +412,9 @@ const FormManager = {
 
         // Update recommendations
         RecommendationsManager.generateRecommendations(formData, taxResult, benefits);
+
+        // Update sticky bar
+        this.updateStickyBar(benefits.totalHouseholdIncome, combinedMonthlyNet, benefits.totalMonthlyBenefits);
     },
 
     /**

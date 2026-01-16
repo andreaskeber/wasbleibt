@@ -6,15 +6,15 @@
 const ChartManager = {
     chart: null,
 
-    // Chart colors - Professional palette
+    // Chart colors - Staatlich Light palette
     COLORS: {
-        nettoFix: 'rgba(46, 125, 50, 0.9)',        // Forest Green - base net
-        nettoRising: 'rgba(249, 168, 37, 0.85)',   // Amber - rising net
-        familienbeihilfe: 'rgba(21, 101, 192, 0.9)', // Deep Blue
-        sozialhilfe: 'rgba(198, 40, 40, 0.9)',     // Dark Red
-        wohnbeihilfe: 'rgba(249, 168, 37, 0.9)',   // Amber
-        kinderzuschlag: 'rgba(106, 27, 154, 0.9)', // Deep Purple
-        currentMarker: 'rgba(29, 155, 240, 1)'     // Accent Blue
+        nettoFix: 'rgba(46, 125, 50, 0.85)',        // Forest Green - net income
+        nettoRising: 'rgba(245, 158, 11, 0.85)',    // Amber - rising net
+        familienbeihilfe: 'rgba(26, 68, 128, 0.85)', // Government Blue
+        sozialhilfe: 'rgba(183, 28, 28, 0.85)',     // Austrian Red
+        wohnbeihilfe: 'rgba(245, 158, 11, 0.85)',   // Amber
+        kinderzuschlag: 'rgba(123, 31, 162, 0.85)', // Purple
+        currentMarker: 'rgba(26, 68, 128, 1)'       // Government Blue
     },
 
     /**
@@ -149,15 +149,15 @@ const ChartManager = {
                     ctx.setLineDash([5, 5]);
                     ctx.stroke();
 
-                    // Label - white text with dark outline for visibility
-                    ctx.fillStyle = '#ffffff';
-                    ctx.strokeStyle = '#000000';
+                    // Label - dark text with white outline for light theme
+                    ctx.fillStyle = '#1a4480';
+                    ctx.strokeStyle = '#ffffff';
                     ctx.lineWidth = 3;
-                    ctx.font = 'bold 12px Inter, sans-serif';
+                    ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, sans-serif';
                     ctx.textAlign = 'center';
-                    // Draw stroke first (outline), position inside chart
+                    // Draw stroke first (white outline), position inside chart
                     ctx.strokeText('Ihr Einkommen', x, yAxis.top + 20);
-                    // Then fill (white text)
+                    // Then fill (dark text)
                     ctx.fillText('Ihr Einkommen', x, yAxis.top + 20);
                     ctx.restore();
                 }
@@ -174,9 +174,9 @@ const ChartManager = {
                     legend: {
                         position: 'bottom',
                         labels: {
-                            color: 'rgba(255, 255, 255, 0.7)',
+                            color: '#4a5568',
                             font: {
-                                family: 'Inter, sans-serif',
+                                family: '-apple-system, BlinkMacSystemFont, sans-serif',
                                 size: 12
                             },
                             padding: 20,
@@ -185,19 +185,19 @@ const ChartManager = {
                         }
                     },
                     tooltip: {
-                        backgroundColor: 'rgba(26, 26, 36, 0.95)',
-                        titleColor: 'white',
-                        bodyColor: 'rgba(255, 255, 255, 0.8)',
-                        borderColor: 'rgba(255, 255, 255, 0.1)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                        titleColor: '#1b1b1b',
+                        bodyColor: '#4a5568',
+                        borderColor: 'rgba(0, 0, 0, 0.1)',
                         borderWidth: 1,
                         padding: 12,
                         cornerRadius: 8,
                         titleFont: {
-                            family: 'Inter, sans-serif',
+                            family: '-apple-system, BlinkMacSystemFont, sans-serif',
                             weight: 'bold'
                         },
                         bodyFont: {
-                            family: 'Inter, sans-serif'
+                            family: '-apple-system, BlinkMacSystemFont, sans-serif'
                         },
                         callbacks: {
                             title: (items) => {
@@ -223,15 +223,15 @@ const ChartManager = {
                         title: {
                             display: true,
                             text: 'Bruttolohn (€/Monat)',
-                            color: 'rgba(255, 255, 255, 0.7)',
+                            color: '#4a5568',
                             font: {
-                                family: 'Inter, sans-serif',
+                                family: '-apple-system, BlinkMacSystemFont, sans-serif',
                                 size: 14,
                                 weight: '500'
                             }
                         },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.5)',
+                            color: '#718096',
                             callback: (value, index) => {
                                 // Show every 5th label
                                 if (index % 5 === 0) {
@@ -242,7 +242,7 @@ const ChartManager = {
                             maxRotation: 0
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
+                            color: 'rgba(0, 0, 0, 0.05)'
                         }
                     },
                     y: {
@@ -250,19 +250,19 @@ const ChartManager = {
                         title: {
                             display: true,
                             text: 'Haushaltskasse (€/Monat)',
-                            color: 'rgba(255, 255, 255, 0.7)',
+                            color: '#4a5568',
                             font: {
-                                family: 'Inter, sans-serif',
+                                family: '-apple-system, BlinkMacSystemFont, sans-serif',
                                 size: 14,
                                 weight: '500'
                             }
                         },
                         ticks: {
-                            color: 'rgba(255, 255, 255, 0.5)',
+                            color: '#718096',
                             callback: (value) => '€' + value.toLocaleString('de-AT')
                         },
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.05)'
+                            color: 'rgba(0, 0, 0, 0.05)'
                         }
                     }
                 },

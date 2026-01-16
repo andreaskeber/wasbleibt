@@ -7,10 +7,24 @@
     <title>was-bleibt.at - Österreich Steuer- & Sozialleistungsrechner</title>
     <meta name="description"
         content="Berechnen Sie Ihr tatsächliches Haushaltseinkommen inkl. Familienbeihilfe, Wohnbeihilfe und weiteren Sozialleistungen.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://was-bleibt.at/">
+    <meta property="og:title" content="was-bleibt.at - Steuer- & Sozialleistungsrechner">
+    <meta property="og:description"
+        content="Berechnen Sie Ihr tatsächliches Haushaltseinkommen in Österreich inkl. aller Sozialleistungen.">
+    <meta property="og:image" content="https://was-bleibt.at/og-image.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://was-bleibt.at/">
+    <meta name="twitter:title" content="was-bleibt.at - Steuer- & Sozialleistungsrechner">
+    <meta name="twitter:description"
+        content="Berechnen Sie Ihr tatsächliches Haushaltseinkommen in Österreich inkl. aller Sozialleistungen.">
+    <meta name="twitter:image" content="https://was-bleibt.at/og-image.png">
+
     <link rel="stylesheet" href="index.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -24,6 +38,31 @@
             </div>
             <p class="tagline">Ihr tatsächliches Haushaltseinkommen in Österreich</p>
         </header>
+
+        <!-- Sticky Result Bar (appears on scroll) -->
+        <div class="sticky-result-bar" id="stickyResultBar">
+            <div class="sticky-content">
+                <div class="sticky-item">
+                    <span class="sticky-label">Haushaltskasse</span>
+                    <span class="sticky-value highlight" id="stickyTotal">€ 0</span>
+                </div>
+                <div class="sticky-item">
+                    <span class="sticky-label">Netto</span>
+                    <span class="sticky-value" id="stickyNet">€ 0</span>
+                </div>
+                <div class="sticky-item">
+                    <span class="sticky-label">Sozialleistungen</span>
+                    <span class="sticky-value benefits" id="stickyBenefits">€ 0</span>
+                </div>
+                <button class="sticky-share-btn" id="shareBtn" title="Link teilen">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                        <polyline points="16,6 12,2 8,6" />
+                        <line x1="12" y1="2" x2="12" y2="15" />
+                    </svg>
+                </button>
+            </div>
+        </div>
 
         <!-- Disclaimer Banner -->
         <div class="disclaimer-banner">
