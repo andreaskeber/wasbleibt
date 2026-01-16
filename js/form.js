@@ -14,10 +14,12 @@ const FormManager = {
         document.getElementById('addChildBtnTop')?.addEventListener('click', () => {
             this.addChild();
             this.updateChildCount();
+            this.calculate();
         });
         document.getElementById('removeChildBtn')?.addEventListener('click', () => {
             this.removeLastChild();
             this.updateChildCount();
+            this.calculate();
         });
 
         // Status toggle cards

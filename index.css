@@ -231,7 +231,11 @@ body {
    =========================== */
 .main-content {
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    /* Prevents children from expanding grid */
     gap: var(--spacing-xl);
+    max-width: 100%;
+    overflow: hidden;
 }
 
 /* ===========================
@@ -1335,6 +1339,7 @@ input[type="number"] {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin-bottom: var(--spacing-lg);
+    max-width: 100%;
 }
 
 .table-wrapper .calc-table {
@@ -1408,6 +1413,8 @@ input[type="number"] {
     border-radius: var(--radius-md);
     padding: var(--spacing-lg);
     margin: var(--spacing-lg) 0;
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .formula-box h4 {
