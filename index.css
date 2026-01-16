@@ -961,10 +961,17 @@ input[type="number"] {
 .chart-container {
     position: relative;
     height: 380px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     background: var(--bg-tertiary);
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     border: 1px solid var(--border-color);
+}
+
+.chart-container canvas {
+    max-width: 100% !important;
 }
 
 /* Recommendations */
