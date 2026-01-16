@@ -166,7 +166,7 @@ const TaxCalculator = {
             socialSecurity: socialSecurity,
             monthlyTax: monthlyTax,
             annualTax: annualTax,
-            taxCredits: taxCredits,
+            taxCredits: additionalCredits,
             net: Math.max(0, monthlyNet),
             effectiveTaxRate: annualGross > 0 ? (annualTax / annualGross) * 100 : 0,
             effectiveTotalRate: annualGross > 0 ?
