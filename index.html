@@ -82,47 +82,44 @@
             <section class="input-section glass-card">
                 <h2>Ihre Situation</h2>
 
-                <!-- Family Status Toggle Cards + Bundesland + Kind -->
+                <!-- Family Status + Kind -->
                 <div class="status-toggle-group">
                     <label class="toggle-label">Ich bin:</label>
                     <div class="status-row">
-                        <div class="status-cards">
-                            <button type="button" class="status-card active" data-status="single" id="statusSingle">
-                                <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="32" cy="20" r="12" />
-                                    <path d="M16 56c0-13 7-20 16-20s16 7 16 20" />
-                                </svg>
-                                <span class="status-text">Alleinstehend</span>
-                            </button>
-                            <button type="button" class="status-card" data-status="married" id="statusMarried">
-                                <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
-                                    <circle cx="22" cy="20" r="10" />
-                                    <circle cx="42" cy="20" r="10" />
-                                    <path d="M8 56c0-11 6-17 14-17s14 6 14 17" />
-                                    <path d="M28 56c0-11 6-17 14-17s14 6 14 17" />
-                                </svg>
-                                <span class="status-text">Verheiratet / Lebensgemeinschaft</span>
-                            </button>
-                        </div>
-                        <div class="quick-options">
-                            <div class="quick-option">
-                                <label for="federalState">📍 Bundesland</label>
-                                <select id="federalState">
-                                    <option value="vienna" selected>Wien</option>
-                                    <option value="burgenland">Burgenland</option>
-                                    <option value="carinthia">Kärnten</option>
-                                    <option value="lowerAustria">Niederösterreich</option>
-                                    <option value="upperAustria">Oberösterreich</option>
-                                    <option value="salzburg">Salzburg</option>
-                                    <option value="steiermark">Steiermark</option>
-                                    <option value="tyrol">Tirol</option>
-                                    <option value="vorarlberg">Vorarlberg</option>
-                                </select>
-                            </div>
-                            <button type="button" class="btn-add-child" id="addChildBtnTop">
-                                👶 + Kind
-                            </button>
-                        </div>
+                        <button type="button" class="status-card active" data-status="single" id="statusSingle">
+                            <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
+                                <circle cx="32" cy="20" r="12" />
+                                <path d="M16 56c0-13 7-20 16-20s16 7 16 20" />
+                            </svg>
+                            <span class="status-text">Alleinstehend</span>
+                        </button>
+                        <button type="button" class="status-card" data-status="married" id="statusMarried">
+                            <svg class="status-icon" viewBox="0 0 64 64" fill="currentColor">
+                                <circle cx="22" cy="20" r="10" />
+                                <circle cx="42" cy="20" r="10" />
+                                <path d="M8 56c0-11 6-17 14-17s14 6 14 17" />
+                                <path d="M28 56c0-11 6-17 14-17s14 6 14 17" />
+                            </svg>
+                            <span class="status-text">Verheiratet</span>
+                        </button>
+                        <button type="button" class="btn-add-child" id="addChildBtnTop">
+                            <span style="font-size: 1.5rem;">👶</span>
+                            <span class="status-text">+ Kind</span>
+                        </button>
+                    </div>
+                    <div class="bundesland-row">
+                        <label for="federalState">📍 Bundesland</label>
+                        <select id="federalState">
+                            <option value="vienna" selected>Wien</option>
+                            <option value="burgenland">Burgenland</option>
+                            <option value="carinthia">Kärnten</option>
+                            <option value="lowerAustria">Niederösterreich</option>
+                            <option value="upperAustria">Oberösterreich</option>
+                            <option value="salzburg">Salzburg</option>
+                            <option value="steiermark">Steiermark</option>
+                            <option value="tyrol">Tirol</option>
+                            <option value="vorarlberg">Vorarlberg</option>
+                        </select>
                     </div>
                 </div>
 

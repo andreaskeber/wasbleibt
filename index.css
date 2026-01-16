@@ -338,10 +338,25 @@ input[type="number"] {
 
 .status-row {
     display: flex;
-    gap: var(--spacing-lg);
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    align-items: stretch;
+    margin-bottom: var(--spacing-md);
+}
+
+.bundesland-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.bundesland-row label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.bundesland-row select {
+    flex: 1;
+    max-width: 200px;
 }
 
 .status-cards {
@@ -374,14 +389,21 @@ input[type="number"] {
 }
 
 .btn-add-child {
-    padding: var(--spacing-sm) var(--spacing-md);
+    flex: 1;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-md);
     font-size: var(--font-size-sm);
     cursor: pointer;
     transition: all var(--transition-base);
-    white-space: nowrap;
+    color: var(--text-secondary);
 }
 
 .btn-add-child:hover {
@@ -392,13 +414,12 @@ input[type="number"] {
 .status-cards {
     display: flex;
     gap: var(--spacing-md);
-    flex-wrap: wrap;
+    flex: 1;
 }
 
 .status-card {
     flex: 1;
-    min-width: 140px;
-    max-width: 250px;
+    min-width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
