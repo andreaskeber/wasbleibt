@@ -248,14 +248,7 @@ const ChartManager = {
                     y: {
                         stacked: true,
                         title: {
-                            display: true,
-                            text: 'Haushaltskasse (€/Monat)',
-                            color: '#4a5568',
-                            font: {
-                                family: '-apple-system, BlinkMacSystemFont, sans-serif',
-                                size: 14,
-                                weight: '500'
-                            }
+                            display: false // Hidden to save space - € prefix on values is clear
                         },
                         ticks: {
                             color: '#718096',
