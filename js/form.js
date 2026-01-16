@@ -143,12 +143,25 @@ const FormManager = {
 
         if (!stickyBar || !inputSection) return;
 
+        // Show sticky bar on any interaction with the form
+        let hasInteracted = false;
+
+        const showStickyBar = () => {
+            if (!hasInteracted) {
+                hasInteracted = true;
+                stickyBar.classList.add('visible');
+            }
+        };
+
+        // Listen for any click or focus on input section
+        inputSection.addEventListener('click', showStickyBar);
+        inputSection.addEventListener('focusin', showStickyBar);
+
+        // Also show when scrolling past input section
         window.addEventListener('scroll', () => {
             const inputBottom = inputSection.getBoundingClientRect().bottom;
             if (inputBottom < 0) {
                 stickyBar.classList.add('visible');
-            } else {
-                stickyBar.classList.remove('visible');
             }
         });
     },
