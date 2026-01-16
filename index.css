@@ -114,6 +114,20 @@ body::before {
     z-index: -1;
 }
 
+/* Box sizing reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent horizontal overflow on mobile */
+html,
+body {
+    overflow-x: hidden;
+    max-width: 100vw;
+}
+
 /* App Container */
 .app-container {
     max-width: 800px;
@@ -361,12 +375,26 @@ input[type="number"] {
 
 /* Mobile Responsive: Status Row */
 @media (max-width: 600px) {
+    .app-container {
+        padding: var(--spacing-md);
+    }
+
+    .glass-card {
+        padding: var(--spacing-md);
+    }
+
     .status-row {
         flex-direction: column;
     }
 
     .status-row>* {
         width: 100%;
+        min-width: 0;
+    }
+
+    .status-card {
+        min-width: 0;
+        padding: var(--spacing-md);
     }
 
     .bundesland-row select {
@@ -377,10 +405,15 @@ input[type="number"] {
         flex-direction: row;
         justify-content: space-between;
         padding: var(--spacing-sm) var(--spacing-md);
+        min-width: 0;
     }
 
     .child-buttons {
         width: auto;
+    }
+
+    .form-grid {
+        gap: var(--spacing-md);
     }
 }
 
