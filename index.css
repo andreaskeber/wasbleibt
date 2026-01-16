@@ -125,12 +125,19 @@ body::before {
 html,
 body {
     overflow-x: hidden;
-    max-width: 100vw;
+    max-width: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 /* App Container */
 .app-container {
     max-width: 800px;
+    width: 100%;
     margin: 0 auto;
     padding: var(--spacing-lg);
 }
