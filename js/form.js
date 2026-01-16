@@ -140,6 +140,7 @@ const FormManager = {
     initStickyBar() {
         const stickyBar = document.getElementById('stickyResultBar');
         const inputSection = document.querySelector('.input-section');
+        const header = document.querySelector('.header');
 
         if (!stickyBar || !inputSection) return;
 
@@ -149,6 +150,14 @@ const FormManager = {
         const showStickyBar = () => {
             if (!hasInteracted) {
                 hasInteracted = true;
+            }
+            // Only show if header is not visible
+            if (header) {
+                const headerBottom = header.getBoundingClientRect().bottom;
+                if (headerBottom < 0) {
+                    stickyBar.classList.add('visible');
+                }
+            } else {
                 stickyBar.classList.add('visible');
             }
         };
@@ -157,10 +166,17 @@ const FormManager = {
         inputSection.addEventListener('click', showStickyBar);
         inputSection.addEventListener('focusin', showStickyBar);
 
-        // Also show when scrolling past input section
+        // Show/hide based on scroll position - hide when header is visible
         window.addEventListener('scroll', () => {
-            const inputBottom = inputSection.getBoundingClientRect().bottom;
-            if (inputBottom < 0) {
+            if (!hasInteracted) return;
+
+            const headerBottom = header ? header.getBoundingClientRect().bottom : -1;
+
+            if (headerBottom > 0) {
+                // Header is visible, hide sticky bar
+                stickyBar.classList.remove('visible');
+            } else {
+                // Header is not visible, show sticky bar
                 stickyBar.classList.add('visible');
             }
         });
