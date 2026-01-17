@@ -1,0 +1,129 @@
+{
+    "year": 2025,
+    "lastUpdated": "2025-01-01",
+    
+    "familienbeihilfe": {
+        "age0to2": 138.40,
+        "age3to9": 148.00,
+        "age10to18": 171.80,
+        "age19plus": 200.40
+    },
+    
+    "kinderabsetzbetrag": 70.90,
+    
+    "siblingBonus": {
+        "2": 8.60,
+        "3": 21.10,
+        "4": 32.10,
+        "5": 38.90,
+        "6": 43.40,
+        "7": 63.10
+    },
+    
+    "familienbonusPlus": {
+        "under18": 2000,
+        "over18": 700
+    },
+    
+    "kindermehrbetrag": 700,
+    
+    "alleinverdiener": {
+        "oneChild": 601,
+        "twoChildren": 813,
+        "additionalChild": 268,
+        "partnerIncomeLimit": 7284
+    },
+    
+    "sozialhilfe": {
+        "single": 1209,
+        "couple": 1693,
+        "childSupplement": 326.43,
+        "housingSupplementRate": 0.30
+    },
+    
+    "wohnbeihilfe": {
+        "vienna": {
+            "name": "Wien",
+            "incomeLimits": { "1": 1693.60, "2": 2030.00, "3": 2157.60, "4": 2450.00, "5": 2750.00 },
+            "appropriateSize": { "1": 60, "2": 75, "base": 75, "perAdditional": 10 },
+            "maxRatePerSqm": 4.50,
+            "minHousingCostPercent": 0.25
+        },
+        "steiermark": {
+            "name": "Steiermark",
+            "incomeLimits": { "1": 1270.00, "2": 1969.10, "3": 2461.30, "4": 2658.20, "5": 2855.20, "6": 2953.60, "7": 3052.00 },
+            "weightingFactors": { "household": 0.5, "adult": 0.5, "minor": 0.3, "disabled": 0.8 },
+            "maxRentSubsidy": { "1": 250, "2": 350, "3": 450, "4": 500, "5": 550 },
+            "minHousingCostPercent": 0.20
+        },
+        "upperAustria": {
+            "name": "Oberösterreich",
+            "incomeLimits": { "1": 1451.40, "2": 2228.60, "3": 2600.00, "4": 2900.00, "5": 3200.00 },
+            "maxRatePerSqm": 3.70,
+            "maxBenefit": 300,
+            "sockelbetrag": 580,
+            "minHousingCostPercent": 0.20
+        },
+        "lowerAustria": {
+            "name": "Niederösterreich",
+            "incomeLimits": { "1": 1500.00, "2": 2100.00, "3": 2500.00, "4": 2800.00, "5": 3100.00 },
+            "maxRatePerSqm": 4.00,
+            "maxBenefit": 280,
+            "minHousingCostPercent": 0.25
+        },
+        "salzburg": {
+            "name": "Salzburg",
+            "incomeLimits": { "1": 1400.00, "2": 2000.00, "3": 2400.00, "4": 2700.00, "5": 3000.00 },
+            "maxRatePerSqm": 12.45,
+            "maxRatePerSqmRural": 11.06,
+            "maxBenefit": 350,
+            "minHousingCostPercent": 0.25
+        },
+        "tyrol": {
+            "name": "Tirol",
+            "incomeLimits": { "1": 1400.00, "2": 2100.00, "3": 2500.00, "4": 2800.00, "5": 3100.00 },
+            "maxRatePerSqm": 4.50,
+            "maxBenefit": 300,
+            "minHousingCostPercent": 0.20
+        },
+        "vorarlberg": {
+            "name": "Vorarlberg",
+            "incomeLimits": { "1": 1500.00, "2": 2200.00, "3": 2600.00, "4": 3000.00, "5": 3300.00 },
+            "maxRatePerSqm": 5.00,
+            "maxBenefit": 350,
+            "vermoegensfreibetrag": 15000,
+            "minHousingCostPercent": 0.25
+        },
+        "carinthia": {
+            "name": "Kärnten",
+            "incomeLimits": { "1": 1800.00, "2": 2200.00, "3": 2400.00, "4": 2600.00, "5": 2800.00 },
+            "childBonus": 200,
+            "maxRatePerSqm": 4.00,
+            "maxBenefit": 500,
+            "betriebskostenPerSqm": 2.50,
+            "appropriateSize": { "1": 50, "perAdditional": 10 },
+            "minHousingCostPercent": 0.30,
+            "noContributionBelow": 1000
+        },
+        "burgenland": {
+            "name": "Burgenland",
+            "incomeLimits": { "1": 1400.00, "2": 2000.00, "3": 2400.00, "4": 2700.00, "5": 3000.00 },
+            "maxRatePerSqm": 5.00,
+            "maxBenefit": 250,
+            "minBenefit": 10,
+            "minHousingCostPercent": 0.25
+        }
+    },
+    
+    "childcareCosts": {
+        "vienna": { "halfDay": 0, "fullDay": 0, "meals": 72, "name": "Wien" },
+        "burgenland": { "halfDay": 0, "fullDay": 0, "meals": 70, "name": "Burgenland" },
+        "carinthia": { "halfDay": 0, "fullDay": 0, "meals": 75, "name": "Kärnten" },
+        "steiermark": { "halfDay": 0, "fullDay": 286, "meals": 110, "name": "Steiermark" },
+        "upperAustria": { "halfDay": 0, "fullDay": 73, "meals": 70, "name": "Oberösterreich" },
+        "lowerAustria": { "halfDay": 0, "fullDay": 75, "meals": 64, "name": "Niederösterreich" },
+        "tyrol": { "halfDay": 0, "fullDay": 36, "meals": 88, "name": "Tirol" },
+        "salzburg": { "halfDay": 0, "fullDay": 64, "meals": 80, "name": "Salzburg" },
+        "vorarlberg": { "halfDay": 0, "fullDay": 46, "meals": 140, "name": "Vorarlberg" }
+    }
+}

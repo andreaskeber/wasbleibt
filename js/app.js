@@ -4,9 +4,12 @@
  */
 
 // Initialize application when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     console.log('🇦🇹 WasBleibt.at - Österreich Steuer- & Sozialleistungsrechner');
     console.log('Version 1.0.0 | Stand: Jänner 2026');
+
+    // Load benefits data from JSON
+    await BenefitsCalculator.loadData();
 
     // Initialize form manager
     FormManager.init();
@@ -15,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('✅ Anwendung initialisiert');
     console.log('📊 Steuerberechnung: Lohnsteuertarif 2025');
     console.log('👨‍👩‍👧 Familienbeihilfe: Werte 2025');
-    console.log('🏠 Wohnbeihilfe: Wien 2025');
+    console.log('🏠 Wohnbeihilfe: Alle Bundesländer 2025');
 });
 
 // Global error handler for debugging
