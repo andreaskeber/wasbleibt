@@ -19,12 +19,20 @@ const TaxCalculator = {
     SOCIAL_SECURITY: {
         health: 0.0387,          // Krankenversicherung
         pension: 0.1025,         // Pensionsversicherung
-        unemployment: 0.0295,    // Arbeitslosenversicherung
+        unemployment: 0.0295,    // Arbeitslosenversicherung (Standard)
         other: 0.01,             // Wohnbauförderung, AK, etc.
-        total: 0.1807,           // Total employee contribution
         maxMonthlyBase: 6450,    // Höchstbeitragsgrundlage 2025
         minMonthlyBase: 1500     // Mindestbeitragsgrundlage 2025
     },
+
+    // Gestaffelte ALV-Beiträge für Geringverdiener 2025
+    // Quelle: ÖGK, oesterreich.gv.at
+    ALV_GRADUATED_RATES: [
+        { max: 2074, rate: 0 },      // bis 2.074 € = 0%
+        { max: 2262, rate: 0.01 },   // 2.074 - 2.262 € = 1%
+        { max: 2451, rate: 0.02 },   // 2.262 - 2.451 € = 2%
+        { max: Infinity, rate: 0.0295 }  // über 2.451 € = 2,95%
+    ],
 
     // Geringfügigkeitsgrenze 2025
     MARGINAL_INCOME_THRESHOLD: 551.10,
@@ -33,6 +41,20 @@ const TaxCalculator = {
     TAX_CREDITS: {
         verkehrsabsetzbetrag: 487,      // für alle Arbeitnehmer
         sonderzahlungenFreibetrag: 620  // Freibetrag für 13./14. Gehalt
+    },
+
+    /**
+     * Get ALV rate based on monthly gross income (graduated for low earners)
+     * @param {number} monthlyGross - Monthly gross salary
+     * @returns {number} ALV contribution rate
+     */
+    getALVRate(monthlyGross) {
+        for (const bracket of this.ALV_GRADUATED_RATES) {
+            if (monthlyGross <= bracket.max) {
+                return bracket.rate;
+            }
+        }
+        return this.SOCIAL_SECURITY.unemployment;
     },
 
     /**
@@ -96,12 +118,19 @@ const TaxCalculator = {
             };
         }
 
+        // Get graduated ALV rate for low earners
+        const alvRate = this.getALVRate(monthlyGross);
+        const unemployment = effectiveBase * alvRate;
+        const health = effectiveBase * this.SOCIAL_SECURITY.health;
+        const pension = effectiveBase * this.SOCIAL_SECURITY.pension;
+        const other = effectiveBase * this.SOCIAL_SECURITY.other;
+
         return {
-            health: effectiveBase * this.SOCIAL_SECURITY.health,
-            pension: effectiveBase * this.SOCIAL_SECURITY.pension,
-            unemployment: effectiveBase * this.SOCIAL_SECURITY.unemployment,
-            other: effectiveBase * this.SOCIAL_SECURITY.other,
-            total: effectiveBase * this.SOCIAL_SECURITY.total
+            health: health,
+            pension: pension,
+            unemployment: unemployment,
+            other: other,
+            total: health + pension + unemployment + other
         };
     },
 
