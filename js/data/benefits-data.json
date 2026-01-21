@@ -1,17 +1,29 @@
 {
+    "_meta": {
+        "year": 2025,
+        "lastUpdated": "2025-01-21",
+        "sources": {
+            "lohnsteuer": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege.html",
+            "sozialversicherung": "https://www.gesundheitskasse.at/cdscontent/?contentid=10007.897029",
+            "familienbeihilfe": "https://www.oesterreich.gv.at/themen/familie_und_partnerschaft/geburt/3/2/Seite.080714.html",
+            "familienbonusPlus": "https://www.bmf.gv.at/themen/steuern/familien/familienbonus-plus.html",
+            "alleinverdiener": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege/alleinverdiener-alleinerzieherabsetzbetrag.html",
+            "sozialhilfe": "https://www.oesterreich.gv.at/themen/soziales/armut/2/Seite.1693914.html"
+        }
+    },
     "year": 2025,
-    "lastUpdated": "2025-01-01",
-    
+    "lastUpdated": "2025-01-21",
     "familienbeihilfe": {
+        "_source": "https://www.oesterreich.gv.at/themen/familie_und_partnerschaft/geburt/3/2/Seite.080714.html",
         "age0to2": 138.40,
         "age3to9": 148.00,
         "age10to18": 171.80,
         "age19plus": 200.40
     },
-    
     "kinderabsetzbetrag": 70.90,
-    
+    "_kinderabsetzbetragSource": "https://www.oesterreich.gv.at/themen/familie_und_partnerschaft/geburt/3/2/Seite.080714.html",
     "siblingBonus": {
+        "_source": "https://www.oesterreich.gv.at/themen/familie_und_partnerschaft/geburt/3/2/Seite.080714.html",
         "2": 8.60,
         "3": 21.10,
         "4": 32.10,
@@ -19,111 +31,272 @@
         "6": 43.40,
         "7": 63.10
     },
-    
     "familienbonusPlus": {
+        "_source": "https://www.bmf.gv.at/themen/steuern/familien/familienbonus-plus.html",
         "under18": 2000,
         "over18": 700
     },
-    
     "kindermehrbetrag": 700,
-    
+    "_kindermehrbetragSource": "https://www.bmf.gv.at/themen/steuern/familien/familienbonus-plus.html",
     "alleinverdiener": {
+        "_source": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege/alleinverdiener-alleinerzieherabsetzbetrag.html",
         "oneChild": 601,
         "twoChildren": 813,
         "additionalChild": 268,
         "partnerIncomeLimit": 7284
     },
-    
     "sozialhilfe": {
+        "_source": "https://www.oesterreich.gv.at/themen/soziales/armut/2/Seite.1693914.html",
+        "_note": "Bundesweite Richtsätze gemäß Sozialhilfe-Grundsatzgesetz, Länder können abweichen",
         "single": 1209,
         "couple": 1693,
         "childSupplement": 326.43,
         "housingSupplementRate": 0.30
     },
-    
     "wohnbeihilfe": {
         "vienna": {
+            "_source": "https://www.wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/",
             "name": "Wien",
-            "incomeLimits": { "1": 1693.60, "2": 2030.00, "3": 2157.60, "4": 2450.00, "5": 2750.00 },
-            "appropriateSize": { "1": 60, "2": 75, "base": 75, "perAdditional": 10 },
-            "maxRatePerSqm": 4.50,
+            "incomeLimits": {
+                "1": 1693.60,
+                "2": 2030.00,
+                "3": 2157.60,
+                "4": 2450.00,
+                "5": 2750.00
+            },
+            "appropriateSize": {
+                "1": 60,
+                "2": 75,
+                "base": 75,
+                "perAdditional": 10
+            },
+            "maxRatePerSqm": 8.67,
             "minHousingCostPercent": 0.25
         },
         "steiermark": {
+            "_source": "https://www.soziales.steiermark.at/cms/beitrag/12916037/5460/",
             "name": "Steiermark",
-            "incomeLimits": { "1": 1270.00, "2": 1969.10, "3": 2461.30, "4": 2658.20, "5": 2855.20, "6": 2953.60, "7": 3052.00 },
-            "weightingFactors": { "household": 0.5, "adult": 0.5, "minor": 0.3, "disabled": 0.8 },
-            "maxRentSubsidy": { "1": 250, "2": 350, "3": 450, "4": 500, "5": 550 },
+            "incomeLimits": {
+                "1": 1270.00,
+                "2": 1969.10,
+                "3": 2461.30,
+                "4": 2658.20,
+                "5": 2855.20,
+                "6": 2953.60,
+                "7": 3052.00
+            },
+            "weightingFactors": {
+                "household": 0.5,
+                "adult": 0.5,
+                "minor": 0.3,
+                "disabled": 0.8
+            },
+            "maxRentSubsidy": {
+                "1": 196.91,
+                "2": 246.13,
+                "3": 265.82,
+                "4": 285.52,
+                "5": 295.36
+            },
             "minHousingCostPercent": 0.20
         },
         "upperAustria": {
+            "_source": "https://www.land-oberoesterreich.gv.at/wohnbeihilfe.htm",
             "name": "Oberösterreich",
-            "incomeLimits": { "1": 1451.40, "2": 2228.60, "3": 2600.00, "4": 2900.00, "5": 3200.00 },
+            "incomeLimits": {
+                "1": 1451.40,
+                "2": 2228.60,
+                "3": 2600.00,
+                "4": 2900.00,
+                "5": 3200.00
+            },
             "maxRatePerSqm": 3.70,
+            "maxRatePerSqmNew": 8.00,
             "maxBenefit": 300,
-            "sockelbetrag": 580,
+            "appropriateSize": {
+                "1": 45,
+                "perAdditional": 15
+            },
             "minHousingCostPercent": 0.20
         },
         "lowerAustria": {
+            "_source": "https://www.noe.gv.at/noe/Wohnen/Wohnbeihilfe.html",
+            "_note": "Keine pauschalen Einkommensgrenzen, individuelle Berechnung",
             "name": "Niederösterreich",
-            "incomeLimits": { "1": 1500.00, "2": 2100.00, "3": 2500.00, "4": 2800.00, "5": 3100.00 },
+            "incomeLimits": {
+                "1": 1500.00,
+                "2": 2100.00,
+                "3": 2500.00,
+                "4": 2800.00,
+                "5": 3100.00
+            },
             "maxRatePerSqm": 4.00,
             "maxBenefit": 280,
             "minHousingCostPercent": 0.25
         },
         "salzburg": {
+            "_source": "https://www.salzburg.gv.at/themen/bauen-wohnen/wohnen/wohnbeihilfe",
             "name": "Salzburg",
-            "incomeLimits": { "1": 1400.00, "2": 2000.00, "3": 2400.00, "4": 2700.00, "5": 3000.00 },
+            "_note": "Keine pauschalen Einkommensgrenzen, individuelle Berechnung über zumutbare Belastung",
+            "incomeLimits": {
+                "1": 1400.00,
+                "2": 2000.00,
+                "3": 2400.00,
+                "4": 2700.00,
+                "5": 3000.00
+            },
             "maxRatePerSqm": 12.45,
             "maxRatePerSqmRural": 11.06,
             "maxBenefit": 350,
             "minHousingCostPercent": 0.25
         },
         "tyrol": {
+            "_source": "https://www.tirol.gv.at/bauen-wohnen/wohnbaufoerderung/wohnbeihilfe/",
             "name": "Tirol",
-            "incomeLimits": { "1": 1400.00, "2": 2100.00, "3": 2500.00, "4": 2800.00, "5": 3100.00 },
-            "maxRatePerSqm": 4.50,
+            "incomeLimits": {
+                "1": 1300.00,
+                "2": 2100.00,
+                "3": 2500.00,
+                "4": 2800.00,
+                "5": 3100.00
+            },
+            "appropriateSize": {
+                "1": 50,
+                "perAdditional": 20,
+                "max": 150
+            },
             "maxBenefit": 300,
+            "minBenefit": 7,
             "minHousingCostPercent": 0.20
         },
         "vorarlberg": {
+            "_source": "https://www.vorarlberg.at/web/land-vorarlberg/wohnbeihilfe",
             "name": "Vorarlberg",
-            "incomeLimits": { "1": 1500.00, "2": 2200.00, "3": 2600.00, "4": 3000.00, "5": 3300.00 },
+            "_note": "Individuelle Berechnung, Vermögensfreibetrag €15.000 für 1 Person + €5.000 je weitere",
+            "incomeLimits": {
+                "1": 1500.00,
+                "2": 2200.00,
+                "3": 2600.00,
+                "4": 3000.00,
+                "5": 3300.00
+            },
             "maxRatePerSqm": 5.00,
             "maxBenefit": 350,
             "vermoegensfreibetrag": 15000,
             "minHousingCostPercent": 0.25
         },
         "carinthia": {
+            "_source": "https://www.ktn.gv.at/Service/Formulare-und-Leistungen/SG-A14-WBH",
             "name": "Kärnten",
-            "incomeLimits": { "1": 1800.00, "2": 2200.00, "3": 2400.00, "4": 2600.00, "5": 2800.00 },
+            "incomeLimits": {
+                "1": 1800.00,
+                "2": 2200.00,
+                "3": 2400.00,
+                "4": 2600.00,
+                "5": 2800.00
+            },
             "childBonus": 200,
             "maxRatePerSqm": 4.00,
             "maxBenefit": 500,
             "betriebskostenPerSqm": 2.50,
-            "appropriateSize": { "1": 50, "perAdditional": 10 },
+            "appropriateSize": {
+                "1": 50,
+                "perAdditional": 10
+            },
+            "maxRentPerSqm": 10.60,
             "minHousingCostPercent": 0.30,
             "noContributionBelow": 1000
         },
         "burgenland": {
+            "_source": "https://www.burgenland.at/themen/wohnen/wohnbeihilfe/",
+            "_note": "Sehr hohe Jahres-Einkommensgrenzen (€48.400 für 1 Person/Jahr), basiert auf Nettomiete",
             "name": "Burgenland",
-            "incomeLimits": { "1": 1400.00, "2": 2000.00, "3": 2400.00, "4": 2700.00, "5": 3000.00 },
+            "incomeLimits": {
+                "1": 1400.00,
+                "2": 2000.00,
+                "3": 2400.00,
+                "4": 2700.00,
+                "5": 3000.00
+            },
             "maxRatePerSqm": 5.00,
             "maxBenefit": 250,
             "minBenefit": 10,
             "minHousingCostPercent": 0.25
         }
     },
-    
     "childcareCosts": {
-        "vienna": { "halfDay": 0, "fullDay": 0, "meals": 72, "name": "Wien" },
-        "burgenland": { "halfDay": 0, "fullDay": 0, "meals": 70, "name": "Burgenland" },
-        "carinthia": { "halfDay": 0, "fullDay": 0, "meals": 75, "name": "Kärnten" },
-        "steiermark": { "halfDay": 0, "fullDay": 286, "meals": 110, "name": "Steiermark" },
-        "upperAustria": { "halfDay": 0, "fullDay": 73, "meals": 70, "name": "Oberösterreich" },
-        "lowerAustria": { "halfDay": 0, "fullDay": 75, "meals": 64, "name": "Niederösterreich" },
-        "tyrol": { "halfDay": 0, "fullDay": 36, "meals": 88, "name": "Tirol" },
-        "salzburg": { "halfDay": 0, "fullDay": 64, "meals": 80, "name": "Salzburg" },
-        "vorarlberg": { "halfDay": 0, "fullDay": 46, "meals": 140, "name": "Vorarlberg" }
+        "_note": "Durchschnittswerte für Ganztagsbetreuung inkl. Essen. Tatsächliche Kosten variieren stark nach Gemeinde, Einkommen und Einrichtung.",
+        "vienna": {
+            "_source": "https://www.wien.gv.at/bildung/kindergarten/foerderungen/essen.html",
+            "halfDay": 0,
+            "fullDay": 0,
+            "meals": 85,
+            "name": "Wien",
+            "_note": "Betreuung gratis, nur Essensgeld €84,85/Monat (ab 2026: €94)"
+        },
+        "burgenland": {
+            "_source": "https://www.burgenland.at/themen/familie/kinderbetreuung/",
+            "halfDay": 0,
+            "fullDay": 0,
+            "meals": 70,
+            "name": "Burgenland",
+            "_note": "Öffentliche Kindergärten beitragsfrei seit 2019"
+        },
+        "carinthia": {
+            "_source": "https://www.ktn.gv.at/Themen-AZ/Details?thema=113",
+            "halfDay": 0,
+            "fullDay": 0,
+            "meals": 75,
+            "name": "Kärnten",
+            "_note": "Betreuung seit 2023 kostenfrei, nur Verpflegung + Material"
+        },
+        "steiermark": {
+            "_source": "https://www.graz.at/cms/beitrag/10034082/7757922/Eltern_und_Elternbeitraege.html",
+            "halfDay": 0,
+            "fullDay": 294,
+            "meals": 110,
+            "name": "Steiermark",
+            "_note": "Sozial gestaffelt nach Einkommen, Beispiel: Ganztagsplatz privat ~€294/Monat"
+        },
+        "upperAustria": {
+            "_source": "https://www.land-oberoesterreich.gv.at/kinderbetreuung.htm",
+            "halfDay": 0,
+            "fullDay": 73,
+            "meals": 70,
+            "name": "Oberösterreich",
+            "_note": "Vormittag gratis ab 30 Monate, Nachmittag einkommensabhängig"
+        },
+        "lowerAustria": {
+            "_source": "https://www.noe.gv.at/noe/Kinderbetreuung/Kinderbetreuung.html",
+            "halfDay": 0,
+            "fullDay": 217,
+            "meals": 64,
+            "name": "Niederösterreich",
+            "_note": "Vormittag bis 13 Uhr gratis, Nachmittag ~€217/Monat lt. AK"
+        },
+        "tyrol": {
+            "_source": "https://www.tirol.gv.at/gesellschaft-soziales/kinder-und-jugendhilfe/kinderbetreuung/",
+            "halfDay": 0,
+            "fullDay": 53,
+            "meals": 88,
+            "name": "Tirol",
+            "_note": "Innsbruck Ganztag €52,50-60/Monat, Essen €4,40/Tag"
+        },
+        "salzburg": {
+            "_source": "https://www.stadt-salzburg.at/kinderbetreuung/",
+            "halfDay": 0,
+            "fullDay": 113,
+            "meals": 80,
+            "name": "Salzburg",
+            "_note": "20h/Woche vom Land übernommen (€113), jede Stunde darüber €0,40-0,80"
+        },
+        "vorarlberg": {
+            "_source": "https://vorarlberg.at/kinderbetreuung",
+            "halfDay": 49,
+            "fullDay": 100,
+            "meals": 140,
+            "name": "Vorarlberg",
+            "_note": "Kernzeit 3-4-Jährige ~€45-49/Monat, 5-Jährige Kernzeit gratis"
+        }
     }
 }

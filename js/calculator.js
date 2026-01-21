@@ -1,10 +1,16 @@
 /**
  * Austrian Tax Calculator (2025)
  * Core calculation logic for income tax and social security
+ * 
+ * Sources:
+ * - Lohnsteuer: https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege.html
+ * - Sozialversicherung: https://www.gesundheitskasse.at/cdscontent/?contentid=10007.897029
+ * - ALV-Staffelung: https://www.oesterreich.gv.at/themen/arbeit_und_pension/arbeitslos_gemeldet/3/Seite.320222.html
  */
 
 const TaxCalculator = {
-    // 2025 Austrian income tax brackets (annual income)
+    // 2025 Austrian income tax brackets (annual taxable income after SV deduction)
+    // Source: https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege.html
     TAX_BRACKETS_2025: [
         { min: 0, max: 13308, rate: 0 },
         { min: 13308, max: 21617, rate: 0.20 },
@@ -16,17 +22,18 @@ const TaxCalculator = {
     ],
 
     // Social security contribution rates (employee share)
+    // Source: https://www.gesundheitskasse.at/cdscontent/?contentid=10007.897029
     SOCIAL_SECURITY: {
-        health: 0.0387,          // Krankenversicherung
-        pension: 0.1025,         // Pensionsversicherung
-        unemployment: 0.0295,    // Arbeitslosenversicherung (Standard)
-        other: 0.01,             // Wohnbauförderung, AK, etc.
+        health: 0.0387,          // Krankenversicherung (3,87%)
+        pension: 0.1025,         // Pensionsversicherung (10,25%)
+        unemployment: 0.0295,    // Arbeitslosenversicherung Standard (2,95%)
+        other: 0.01,             // Wohnbauförderung (0,5%) + AK-Umlage (0,5%)
         maxMonthlyBase: 6450,    // Höchstbeitragsgrundlage 2025
-        minMonthlyBase: 1500     // Mindestbeitragsgrundlage 2025
+        minMonthlyBase: 1500     // Mindestbeitragsgrundlage 2025 (nicht verwendet)
     },
 
     // Gestaffelte ALV-Beiträge für Geringverdiener 2025
-    // Quelle: ÖGK, oesterreich.gv.at
+    // Source: https://www.oesterreich.gv.at/themen/arbeit_und_pension/arbeitslos_gemeldet/3/Seite.320222.html
     ALV_GRADUATED_RATES: [
         { max: 2074, rate: 0 },      // bis 2.074 € = 0%
         { max: 2262, rate: 0.01 },   // 2.074 - 2.262 € = 1%
@@ -35,12 +42,15 @@ const TaxCalculator = {
     ],
 
     // Geringfügigkeitsgrenze 2025
+    // Source: https://www.gesundheitskasse.at/cdscontent/?contentid=10007.897029
     MARGINAL_INCOME_THRESHOLD: 551.10,
 
     // Absetzbeträge 2025
+    // Source: https://www.bmf.gv.at/themen/steuern/arbeitnehmerinnenveranlagung/steuertarif-steuerabsetzbetraege.html
     TAX_CREDITS: {
-        verkehrsabsetzbetrag: 487,      // für alle Arbeitnehmer
-        sonderzahlungenFreibetrag: 620  // Freibetrag für 13./14. Gehalt
+        verkehrsabsetzbetrag: 487,      // für alle Arbeitnehmer (€487/Jahr)
+        sonderzahlungenFreibetrag: 620  // Freibetrag für 13./14. Gehalt (€620)
+        // Source Sonderzahlungen: https://www.wko.at/steuern/lohnsteuer-sonderzahlungen
     },
 
     /**
@@ -64,27 +74,7 @@ const TaxCalculator = {
      */
     calculateIncomeTax(annualGross) {
         let tax = 0;
-        let remainingIncome = annualGross;
 
-        for (const bracket of this.TAX_BRACKETS_2025) {
-            if (remainingIncome <= 0) break;
-
-            const taxableInBracket = Math.min(
-                Math.max(0, annualGross - bracket.min),
-                bracket.max - bracket.min
-            );
-
-            if (annualGross > bracket.min) {
-                const incomeInBracket = Math.min(
-                    annualGross - bracket.min,
-                    bracket.max - bracket.min
-                );
-                tax += incomeInBracket * bracket.rate;
-            }
-        }
-
-        // Recalculate using correct progressive formula
-        tax = 0;
         for (let i = 0; i < this.TAX_BRACKETS_2025.length; i++) {
             const bracket = this.TAX_BRACKETS_2025[i];
             if (annualGross <= bracket.min) break;
