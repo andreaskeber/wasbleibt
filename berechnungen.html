@@ -262,84 +262,210 @@
 
             <!-- Wohnbeihilfe Section -->
             <section class="info-section glass-card">
-                <h2>Wohnbeihilfe</h2>
+                <h2>Wohnbeihilfe 2025</h2>
                 <p class="section-intro">
-                    Die Wohnbeihilfe ist Ländersache und variiert stark. Wir berechnen aktuell Wien und Steiermark.
+                    Die Wohnbeihilfe ist Ländersache. Die Berechnungsmethoden unterscheiden sich fundamental zwischen
+                    den
+                    Bundesländern.
+                    Hier finden Sie die Details für alle 9 Bundesländer.
                 </p>
 
+                <!-- 1. Wien -->
                 <h3>Wien</h3>
-                <p>Einkommensgrenzen (Netto/Monat, ohne 13./14. Gehalt):</p>
+                <p><strong>Modell:</strong> Fixe Einkommensgrenzen. Wer darunter liegt, hat Anspruch auf
+                    Differenzzahlung.</p>
                 <div class="table-wrapper">
                     <table class="calc-table">
                         <thead>
                             <tr>
                                 <th>Haushaltsgröße</th>
-                                <th>Einkommensgrenze</th>
+                                <th>Einkommensgrenze (Netto)</th>
+                                <th>Angemessene Wohnnutzfläche</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1 Person</td>
                                 <td>€1.693,60</td>
+                                <td>60 m²</td>
                             </tr>
                             <tr>
                                 <td>2 Personen</td>
                                 <td>€2.030,00</td>
+                                <td>75 m²</td>
                             </tr>
                             <tr>
                                 <td>3 Personen</td>
                                 <td>€2.157,60</td>
+                                <td>85 m²</td>
                             </tr>
                             <tr>
                                 <td>4 Personen</td>
                                 <td>€2.450,00</td>
+                                <td>95 m²</td>
                             </tr>
                             <tr>
                                 <td>5 Personen</td>
                                 <td>€2.750,00</td>
+                                <td>105 m²</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <div class="formula-box">
+                    <strong>Parameter 2025:</strong><br>
+                    Max. anerkannter Mietzins: €8,67 / m²<br>
+                    Zumutbare Wohnbelastung: 25% des Nettoeinkommens
+                </div>
                 <p class="source-note">Quelle: <a href="https://www.wien.gv.at/wohnen/wohnbaufoerderung/wohnbeihilfe/"
-                        target="_blank">Stadt Wien MA 50</a> (Stand: 2025)</p>
+                        target="_blank">Stadt Wien MA 50</a></p>
 
+                <!-- 2. Steiermark -->
                 <h3>Steiermark (Wohnunterstützung)</h3>
-                <p>Maximale monatliche Wohnunterstützung bei Haushaltsgröße:</p>
+                <p><strong>Modell:</strong> Einkommensabhängige Beihilfe mit Sozialstaffel.</p>
                 <div class="table-wrapper">
                     <table class="calc-table">
                         <thead>
                             <tr>
                                 <th>Haushaltsgröße</th>
-                                <th>Max. Wohnunterstützung</th>
+                                <th>Max. Einkommen (Netto)</th>
+                                <th>Max. Unterstützung</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1 Person</td>
+                                <td>€1.270,00</td>
                                 <td>€196,91</td>
                             </tr>
                             <tr>
                                 <td>2 Personen</td>
+                                <td>€1.969,10</td>
                                 <td>€246,13</td>
                             </tr>
                             <tr>
                                 <td>3 Personen</td>
+                                <td>€2.461,30</td>
                                 <td>€265,82</td>
                             </tr>
                             <tr>
                                 <td>4 Personen</td>
+                                <td>€2.658,20</td>
                                 <td>€285,52</td>
                             </tr>
                             <tr>
                                 <td>5+ Personen</td>
+                                <td>€2.855,20</td>
                                 <td>€295,36</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <p class="source-note">Quelle: <a href="https://www.soziales.steiermark.at/cms/beitrag/12916037/5460/"
-                        target="_blank">Land Steiermark</a> (Stand: 2025)</p>
+                        target="_blank">Land Steiermark</a></p>
+
+                <!-- Andere Bundesländer -->
+                <h3>Weitere Bundesländer</h3>
+                <p>Für die übrigen Bundesländer verwenden wir ein <strong>generisches Modell</strong> basierend auf der
+                    "zumutbaren Wohnbelastung". Berechnung:
+                    <code>Förderbare Miete - (Einkommen × Zumutbarkeitsfaktor)</code>.
+                </p>
+
+                <div class="table-wrapper">
+                    <table class="calc-table">
+                        <thead>
+                            <tr>
+                                <th>Bundesland</th>
+                                <th>Max. Einkommen (1 Pers.)</th>
+                                <th>Max. Beihilfe (Deckel)</th>
+                                <th>Zumutbarkeit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Oberösterreich</strong></td>
+                                <td>€1.451,40</td>
+                                <td>€300</td>
+                                <td>20%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Niederösterreich</strong></td>
+                                <td>€1.500,00*</td>
+                                <td>€280</td>
+                                <td>25%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Salzburg</strong></td>
+                                <td>€1.400,00*</td>
+                                <td>€350</td>
+                                <td>25%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tirol</strong></td>
+                                <td>€1.300,00</td>
+                                <td>€300</td>
+                                <td>20%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Vorarlberg</strong></td>
+                                <td>€1.500,00*</td>
+                                <td>€350</td>
+                                <td>25%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Kärnten</strong></td>
+                                <td>€1.800,00</td>
+                                <td>€500</td>
+                                <td>30%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Burgenland</strong></td>
+                                <td>€1.400,00</td>
+                                <td>€250</td>
+                                <td>25%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="info-note">
+                    *Für NÖ, Sbg und Vbg gibt es keine harten Einkommensgrenzen in Tabellenform, die Werte sind
+                    Richtwerte für die Berechnung.
+                    Die tatsächliche Förderhöhe hängt stark von der individuellen Miethöhe und Wohnungsgröße ab.
+                </p>
+
+                <div class="formula-box">
+                    <h4>Beispielrechnung (Oberösterreich)</h4>
+                    <code>
+                        <strong>Annahme:</strong> 1 Person, €1.000 Netto, €500 Miete (45m²)<br><br>
+                        <strong>1. Förderbare Miete:</strong><br>
+                        45 m² × €3,70 (Max. Satz) = €166,50<br><br>
+                        <strong>2. Zumutbare Belastung:</strong><br>
+                        €1.000 × 20% = €200,00<br><br>
+                        <strong>3. Berechnung:</strong><br>
+                        €166,50 (Miete) - €200,00 (Zumutbarkeit) = -€33,50<br>
+                        <em>Ergebnis: Kein Anspruch, da zumutbare Belastung höher als förderbare Miete.</em>
+                    </code>
+                    <br><br>
+                    <strong>Hinweis zur Berechnung:</strong> Viele Bundesländer nutzen eine "Einschleifregelung".
+                    Das bedeutet, je näher man an der Einkommensobergrenze ist, desto stärker wird die Förderung
+                    reduziert (nicht linear).
+                </div>
+
+                <div class="formula-box">
+                    <strong>Quellen:</strong><br>
+                    <a href="https://www.land-oberoesterreich.gv.at/wohnbeihilfe.htm" target="_blank">Oberösterreich</a>
+                    |
+                    <a href="https://www.noe.gv.at/noe/Wohnen/Wohnbeihilfe.html" target="_blank">Niederösterreich</a> |
+                    <a href="https://www.salzburg.gv.at/themen/bauen-wohnen/wohnen/wohnbeihilfe"
+                        target="_blank">Salzburg</a> |
+                    <a href="https://www.tirol.gv.at/bauen-wohnen/wohnbaufoerderung/wohnbeihilfe/"
+                        target="_blank">Tirol</a> |
+                    <a href="https://www.vorarlberg.at/web/land-vorarlberg/wohnbeihilfe" target="_blank">Vorarlberg</a>
+                    |
+                    <a href="https://www.ktn.gv.at/Service/Formulare-und-Leistungen/SG-A14-WBH"
+                        target="_blank">Kärnten</a> |
+                    <a href="https://www.burgenland.at/themen/wohnen/wohnbeihilfe/" target="_blank">Burgenland</a>
+                </div>
             </section>
 
             <!-- Kinderbetreuung Section -->
